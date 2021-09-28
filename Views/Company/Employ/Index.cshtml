@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Gilbert.Models.CR_AD_Header>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FinishDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDescrip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LDescrip)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IDStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unique_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CR_User.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreationDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FinishDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDescrip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LDescrip)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IDStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unique_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CR_User.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

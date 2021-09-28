@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GilbertModelStoreContainer" CdmEntityContainer="GilbertEntities">
+    <EntitySetMapping Name="CR_AD_Detail">
+      <EntityTypeMapping TypeName="GilbertModel.CR_AD_Detail">
+        <MappingFragment StoreEntitySet="CR_AD_Detail">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDAdHeader" ColumnName="IDAdHeader" />
+          <ScalarProperty Name="IDPosition" ColumnName="IDPosition" />
+          <ScalarProperty Name="MinAge" ColumnName="MinAge" />
+          <ScalarProperty Name="MaxAge" ColumnName="MaxAge" />
+          <ScalarProperty Name="IDEducation" ColumnName="IDEducation" />
+          <ScalarProperty Name="IDExperience" ColumnName="IDExperience" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="PositionDescript" ColumnName="PositionDescript" />
+          <ScalarProperty Name="TaskDescrip" ColumnName="TaskDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CR_AD_Header">
+      <EntityTypeMapping TypeName="GilbertModel.CR_AD_Header">
+        <MappingFragment StoreEntitySet="CR_AD_Header">
+          <ScalarProperty Name="Unique_ID" ColumnName="Unique_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDUserCreator" ColumnName="IDUserCreator" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CR_Company">
+      <EntityTypeMapping TypeName="GilbertModel.CR_Company">
+        <MappingFragment StoreEntitySet="CR_Company">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="IDState" ColumnName="IDState" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="TaxId" ColumnName="TaxId" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CR_User">
+      <EntityTypeMapping TypeName="GilbertModel.CR_User">
+        <MappingFragment StoreEntitySet="CR_User">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDCompany" ColumnName="IDCompany" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserLastName" ColumnName="UserLastName" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MD_Country">
+      <EntityTypeMapping TypeName="GilbertModel.MD_Country">
+        <MappingFragment StoreEntitySet="MD_Country">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MD_EducationLevel">
+      <EntityTypeMapping TypeName="GilbertModel.MD_EducationLevel">
+        <MappingFragment StoreEntitySet="MD_EducationLevel">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MD_EducationRequired">
+      <EntityTypeMapping TypeName="GilbertModel.MD_EducationRequired">
+        <MappingFragment StoreEntitySet="MD_EducationRequired">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MD_EducationSegment">
+      <EntityTypeMapping TypeName="GilbertModel.MD_EducationSegment">
+        <MappingFragment StoreEntitySet="MD_EducationSegment">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MD_EducationStatus">
+      <EntityTypeMapping TypeName="GilbertModel.MD_EducationStatus">
+        <MappingFragment StoreEntitySet="MD_EducationStatus">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MD_ExperienceRequired">
+      <EntityTypeMapping TypeName="GilbertModel.MD_ExperienceRequired">
+        <MappingFragment StoreEntitySet="MD_ExperienceRequired">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MD_Position">
+      <EntityTypeMapping TypeName="GilbertModel.MD_Position">
+        <MappingFragment StoreEntitySet="MD_Position">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MD_State">
+      <EntityTypeMapping TypeName="GilbertModel.MD_State">
+        <MappingFragment StoreEntitySet="MD_State">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+          <ScalarProperty Name="IDCountry" ColumnName="IDCountry" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MD_Status">
+      <EntityTypeMapping TypeName="GilbertModel.MD_Status">
+        <MappingFragment StoreEntitySet="MD_Status">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="SDescrip" ColumnName="SDescrip" />
+          <ScalarProperty Name="LDescrip" ColumnName="LDescrip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_CV_Education">
+      <EntityTypeMapping TypeName="GilbertModel.USER_CV_Education">
+        <MappingFragment StoreEntitySet="USER_CV_Education">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDCVHeader" ColumnName="IDCVHeader" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+          <ScalarProperty Name="IDEducationSegment" ColumnName="IDEducationSegment" />
+          <ScalarProperty Name="IDEducationLevel" ColumnName="IDEducationLevel" />
+          <ScalarProperty Name="IDEducationStatus" ColumnName="IDEducationStatus" />
+          <ScalarProperty Name="PlaceDescrip" ColumnName="PlaceDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USER_CV_WorkExperience">
+      <EntityTypeMapping TypeName="GilbertModel.USER_CV_WorkExperience">
+        <MappingFragment StoreEntitySet="USER_CV_WorkExperience">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDCVHeader" ColumnName="IDCVHeader" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="FinishDate" ColumnName="FinishDate" />
+          <ScalarProperty Name="IDPosition" ColumnName="IDPosition" />
+          <ScalarProperty Name="PositionDescrip" ColumnName="PositionDescrip" />
+          <ScalarProperty Name="TaskDescrip" ColumnName="TaskDescrip" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USR_CV_Header">
+      <EntityTypeMapping TypeName="GilbertModel.USR_CV_Header">
+        <MappingFragment StoreEntitySet="USR_CV_Header">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="Street" ColumnName="Street" />
+          <ScalarProperty Name="StreetNumber" ColumnName="StreetNumber" />
+          <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+          <ScalarProperty Name="IDState" ColumnName="IDState" />
+          <ScalarProperty Name="IDNationality" ColumnName="IDNationality" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="Age" ColumnName="Age" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USR_User">
+      <EntityTypeMapping TypeName="GilbertModel.USR_User">
+        <MappingFragment StoreEntitySet="USR_User">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="UserLastName" ColumnName="UserLastName" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+          <ScalarProperty Name="UserPhoto" ColumnName="UserPhoto" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="IDStatus" ColumnName="IDStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

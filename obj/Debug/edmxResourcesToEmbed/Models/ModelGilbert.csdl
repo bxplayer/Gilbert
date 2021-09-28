@@ -1,0 +1,503 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GilbertModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CR_AD_Detail">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDAdHeader" Type="Int64" Nullable="false" />
+    <Property Name="IDPosition" Type="Int64" Nullable="false" />
+    <Property Name="MinAge" Type="Int32" />
+    <Property Name="MaxAge" Type="Int32" />
+    <Property Name="IDEducation" Type="Int64" Nullable="false" />
+    <Property Name="IDExperience" Type="Int64" Nullable="false" />
+    <Property Name="Qty" Type="Int32" Nullable="false" />
+    <Property Name="PositionDescript" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TaskDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CR_AD_Header" Relationship="Self.FK_CR_AD_Detail_CR_AD_Header" FromRole="CR_AD_Detail" ToRole="CR_AD_Header" />
+    <NavigationProperty Name="MD_EducationRequired" Relationship="Self.FK_CR_AD_Detail_MD_EducationRequired" FromRole="CR_AD_Detail" ToRole="MD_EducationRequired" />
+    <NavigationProperty Name="MD_ExperienceRequired" Relationship="Self.FK_CR_AD_Detail_MD_ExperienceRequired" FromRole="CR_AD_Detail" ToRole="MD_ExperienceRequired" />
+    <NavigationProperty Name="MD_Position" Relationship="Self.FK_CR_AD_Detail_MD_Position" FromRole="CR_AD_Detail" ToRole="MD_Position" />
+  </EntityType>
+  <EntityType Name="CR_AD_Header">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDUserCreator" Type="Int64" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CR_AD_Detail" Relationship="Self.FK_CR_AD_Detail_CR_AD_Header" FromRole="CR_AD_Header" ToRole="CR_AD_Detail" />
+    <NavigationProperty Name="CR_User" Relationship="Self.FK_CR_AD_Header_CR_User" FromRole="CR_AD_Header" ToRole="CR_User" />
+    <Property Name="Unique_ID" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CR_Company">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Street" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StreetNumber" Type="Int32" Nullable="false" />
+    <Property Name="PostCode" Type="Int32" Nullable="false" />
+    <Property Name="IDState" Type="Int64" Nullable="false" />
+    <Property Name="Telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="TaxId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MD_State" Relationship="Self.FK_CR_Company_MD_State" FromRole="CR_Company" ToRole="MD_State" />
+    <NavigationProperty Name="CR_User" Relationship="Self.FK_CR_User_CR_Company" FromRole="CR_Company" ToRole="CR_User" />
+  </EntityType>
+  <EntityType Name="CR_User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCompany" Type="Int64" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserLastName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telephone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CR_AD_Header" Relationship="Self.FK_CR_AD_Header_CR_User" FromRole="CR_User" ToRole="CR_AD_Header" />
+    <NavigationProperty Name="CR_Company" Relationship="Self.FK_CR_User_CR_Company" FromRole="CR_User" ToRole="CR_Company" />
+  </EntityType>
+  <EntityType Name="MD_Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" />
+    <NavigationProperty Name="MD_State" Relationship="Self.FK_MD_State_MD_Country" FromRole="MD_Country" ToRole="MD_State" />
+  </EntityType>
+  <EntityType Name="MD_EducationLevel">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" />
+    <NavigationProperty Name="USER_CV_Education" Relationship="Self.FK_USER_CV_Education_MD_EducationLevel" FromRole="MD_EducationLevel" ToRole="USER_CV_Education" />
+  </EntityType>
+  <EntityType Name="MD_EducationRequired">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" />
+    <NavigationProperty Name="CR_AD_Detail" Relationship="Self.FK_CR_AD_Detail_MD_EducationRequired" FromRole="MD_EducationRequired" ToRole="CR_AD_Detail" />
+  </EntityType>
+  <EntityType Name="MD_EducationSegment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" />
+    <NavigationProperty Name="USER_CV_Education" Relationship="Self.FK_USER_CV_Education_MD_EducationSegment" FromRole="MD_EducationSegment" ToRole="USER_CV_Education" />
+  </EntityType>
+  <EntityType Name="MD_EducationStatus">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" />
+    <NavigationProperty Name="USER_CV_Education" Relationship="Self.FK_USER_CV_Education_MD_EducationStatus" FromRole="MD_EducationStatus" ToRole="USER_CV_Education" />
+  </EntityType>
+  <EntityType Name="MD_ExperienceRequired">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" />
+    <NavigationProperty Name="CR_AD_Detail" Relationship="Self.FK_CR_AD_Detail_MD_ExperienceRequired" FromRole="MD_ExperienceRequired" ToRole="CR_AD_Detail" />
+  </EntityType>
+  <EntityType Name="MD_Position">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" />
+    <NavigationProperty Name="CR_AD_Detail" Relationship="Self.FK_CR_AD_Detail_MD_Position" FromRole="MD_Position" ToRole="CR_AD_Detail" />
+    <NavigationProperty Name="USER_CV_WorkExperience" Relationship="Self.FK_USER_CV_WorkExperience_MD_Position" FromRole="MD_Position" ToRole="USER_CV_WorkExperience" />
+  </EntityType>
+  <EntityType Name="MD_State">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" />
+    <Property Name="IDCountry" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CR_Company" Relationship="Self.FK_CR_Company_MD_State" FromRole="MD_State" ToRole="CR_Company" />
+    <NavigationProperty Name="MD_Country" Relationship="Self.FK_MD_State_MD_Country" FromRole="MD_State" ToRole="MD_Country" />
+    <NavigationProperty Name="USR_CV_Header" Relationship="Self.FK_USR_CV_Header_MD_State" FromRole="MD_State" ToRole="USR_CV_Header" />
+  </EntityType>
+  <EntityType Name="MD_Status">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USER_CV_Education">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCVHeader" Type="Int64" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishDate" Type="DateTime" Precision="3" />
+    <Property Name="IDEducationSegment" Type="Int64" Nullable="false" />
+    <Property Name="IDEducationLevel" Type="Int64" Nullable="false" />
+    <Property Name="IDEducationStatus" Type="Int64" />
+    <Property Name="PlaceDescrip" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MD_EducationLevel" Relationship="Self.FK_USER_CV_Education_MD_EducationLevel" FromRole="USER_CV_Education" ToRole="MD_EducationLevel" />
+    <NavigationProperty Name="MD_EducationSegment" Relationship="Self.FK_USER_CV_Education_MD_EducationSegment" FromRole="USER_CV_Education" ToRole="MD_EducationSegment" />
+    <NavigationProperty Name="MD_EducationStatus" Relationship="Self.FK_USER_CV_Education_MD_EducationStatus" FromRole="USER_CV_Education" ToRole="MD_EducationStatus" />
+    <NavigationProperty Name="USR_CV_Header" Relationship="Self.FK_USER_CV_Education_USR_CV_Header" FromRole="USER_CV_Education" ToRole="USR_CV_Header" />
+  </EntityType>
+  <EntityType Name="USER_CV_WorkExperience">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDCVHeader" Type="Int64" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FinishDate" Type="DateTime" Precision="0" />
+    <Property Name="IDPosition" Type="Int64" Nullable="false" />
+    <Property Name="PositionDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TaskDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MD_Position" Relationship="Self.FK_USER_CV_WorkExperience_MD_Position" FromRole="USER_CV_WorkExperience" ToRole="MD_Position" />
+    <NavigationProperty Name="USR_CV_Header" Relationship="Self.FK_USER_CV_WorkExperience_USR_CV_Header" FromRole="USER_CV_WorkExperience" ToRole="USR_CV_Header" />
+  </EntityType>
+  <EntityType Name="USR_CV_Header">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDUser" Type="Int64" Nullable="false" />
+    <Property Name="Street" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="StreetNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="IDState" Type="Int64" />
+    <Property Name="IDNationality" Type="Int64" />
+    <Property Name="Birthdate" Type="DateTime" Precision="0" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MD_State" Relationship="Self.FK_USR_CV_Header_MD_State" FromRole="USR_CV_Header" ToRole="MD_State" />
+    <NavigationProperty Name="USER_CV_Education" Relationship="Self.FK_USER_CV_Education_USR_CV_Header" FromRole="USR_CV_Header" ToRole="USER_CV_Education" />
+    <NavigationProperty Name="USER_CV_WorkExperience" Relationship="Self.FK_USER_CV_WorkExperience_USR_CV_Header" FromRole="USR_CV_Header" ToRole="USER_CV_WorkExperience" />
+    <NavigationProperty Name="USR_User" Relationship="Self.FK_USR_CV_Header_USR_User" FromRole="USR_CV_Header" ToRole="USR_User" />
+  </EntityType>
+  <EntityType Name="USR_User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="UserLastName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Telephone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserPhoto" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="USR_CV_Header" Relationship="Self.FK_USR_CV_Header_USR_User" FromRole="USR_User" ToRole="USR_CV_Header" />
+  </EntityType>
+  <Association Name="FK_CR_AD_Detail_CR_AD_Header">
+    <End Role="CR_AD_Header" Type="Self.CR_AD_Header" Multiplicity="1" />
+    <End Role="CR_AD_Detail" Type="Self.CR_AD_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CR_AD_Header">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CR_AD_Detail">
+        <PropertyRef Name="IDAdHeader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CR_AD_Detail_MD_EducationRequired">
+    <End Role="MD_EducationRequired" Type="Self.MD_EducationRequired" Multiplicity="1" />
+    <End Role="CR_AD_Detail" Type="Self.CR_AD_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_EducationRequired">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CR_AD_Detail">
+        <PropertyRef Name="IDEducation" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CR_AD_Detail_MD_ExperienceRequired">
+    <End Role="MD_ExperienceRequired" Type="Self.MD_ExperienceRequired" Multiplicity="1" />
+    <End Role="CR_AD_Detail" Type="Self.CR_AD_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_ExperienceRequired">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CR_AD_Detail">
+        <PropertyRef Name="IDExperience" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CR_AD_Detail_MD_Position">
+    <End Role="MD_Position" Type="Self.MD_Position" Multiplicity="1" />
+    <End Role="CR_AD_Detail" Type="Self.CR_AD_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_Position">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CR_AD_Detail">
+        <PropertyRef Name="IDPosition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CR_AD_Header_CR_User">
+    <End Role="CR_User" Type="Self.CR_User" Multiplicity="1" />
+    <End Role="CR_AD_Header" Type="Self.CR_AD_Header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CR_User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CR_AD_Header">
+        <PropertyRef Name="IDUserCreator" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CR_Company_MD_State">
+    <End Role="MD_State" Type="Self.MD_State" Multiplicity="1" />
+    <End Role="CR_Company" Type="Self.CR_Company" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_State">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CR_Company">
+        <PropertyRef Name="IDState" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CR_User_CR_Company">
+    <End Role="CR_Company" Type="Self.CR_Company" Multiplicity="1" />
+    <End Role="CR_User" Type="Self.CR_User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CR_Company">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="CR_User">
+        <PropertyRef Name="IDCompany" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MD_State_MD_Country">
+    <End Role="MD_Country" Type="Self.MD_Country" Multiplicity="1" />
+    <End Role="MD_State" Type="Self.MD_State" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MD_State">
+        <PropertyRef Name="IDCountry" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CV_Education_MD_EducationLevel">
+    <End Role="MD_EducationLevel" Type="Self.MD_EducationLevel" Multiplicity="1" />
+    <End Role="USER_CV_Education" Type="Self.USER_CV_Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_EducationLevel">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CV_Education">
+        <PropertyRef Name="IDEducationLevel" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CV_Education_MD_EducationSegment">
+    <End Role="MD_EducationSegment" Type="Self.MD_EducationSegment" Multiplicity="1" />
+    <End Role="USER_CV_Education" Type="Self.USER_CV_Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_EducationSegment">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CV_Education">
+        <PropertyRef Name="IDEducationSegment" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CV_Education_MD_EducationStatus">
+    <End Role="MD_EducationStatus" Type="Self.MD_EducationStatus" Multiplicity="0..1" />
+    <End Role="USER_CV_Education" Type="Self.USER_CV_Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_EducationStatus">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CV_Education">
+        <PropertyRef Name="IDEducationStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CV_WorkExperience_MD_Position">
+    <End Role="MD_Position" Type="Self.MD_Position" Multiplicity="1" />
+    <End Role="USER_CV_WorkExperience" Type="Self.USER_CV_WorkExperience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_Position">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CV_WorkExperience">
+        <PropertyRef Name="IDPosition" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USR_CV_Header_MD_State">
+    <End Role="MD_State" Type="Self.MD_State" Multiplicity="0..1" />
+    <End Role="USR_CV_Header" Type="Self.USR_CV_Header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MD_State">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USR_CV_Header">
+        <PropertyRef Name="IDState" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CV_Education_USR_CV_Header">
+    <End Role="USR_CV_Header" Type="Self.USR_CV_Header" Multiplicity="1" />
+    <End Role="USER_CV_Education" Type="Self.USER_CV_Education" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USR_CV_Header">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CV_Education">
+        <PropertyRef Name="IDCVHeader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CV_WorkExperience_USR_CV_Header">
+    <End Role="USR_CV_Header" Type="Self.USR_CV_Header" Multiplicity="1" />
+    <End Role="USER_CV_WorkExperience" Type="Self.USER_CV_WorkExperience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USR_CV_Header">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CV_WorkExperience">
+        <PropertyRef Name="IDCVHeader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USR_CV_Header_USR_User">
+    <End Role="USR_User" Type="Self.USR_User" Multiplicity="1" />
+    <End Role="USR_CV_Header" Type="Self.USR_CV_Header" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USR_User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USR_CV_Header">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GilbertEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CR_AD_Detail" EntityType="Self.CR_AD_Detail" />
+    <EntitySet Name="CR_AD_Header" EntityType="Self.CR_AD_Header" />
+    <EntitySet Name="CR_Company" EntityType="Self.CR_Company" />
+    <EntitySet Name="CR_User" EntityType="Self.CR_User" />
+    <EntitySet Name="MD_Country" EntityType="Self.MD_Country" />
+    <EntitySet Name="MD_EducationLevel" EntityType="Self.MD_EducationLevel" />
+    <EntitySet Name="MD_EducationRequired" EntityType="Self.MD_EducationRequired" />
+    <EntitySet Name="MD_EducationSegment" EntityType="Self.MD_EducationSegment" />
+    <EntitySet Name="MD_EducationStatus" EntityType="Self.MD_EducationStatus" />
+    <EntitySet Name="MD_ExperienceRequired" EntityType="Self.MD_ExperienceRequired" />
+    <EntitySet Name="MD_Position" EntityType="Self.MD_Position" />
+    <EntitySet Name="MD_State" EntityType="Self.MD_State" />
+    <EntitySet Name="MD_Status" EntityType="Self.MD_Status" />
+    <EntitySet Name="USER_CV_Education" EntityType="Self.USER_CV_Education" />
+    <EntitySet Name="USER_CV_WorkExperience" EntityType="Self.USER_CV_WorkExperience" />
+    <EntitySet Name="USR_CV_Header" EntityType="Self.USR_CV_Header" />
+    <EntitySet Name="USR_User" EntityType="Self.USR_User" />
+    <AssociationSet Name="FK_CR_AD_Detail_CR_AD_Header" Association="Self.FK_CR_AD_Detail_CR_AD_Header">
+      <End Role="CR_AD_Header" EntitySet="CR_AD_Header" />
+      <End Role="CR_AD_Detail" EntitySet="CR_AD_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CR_AD_Detail_MD_EducationRequired" Association="Self.FK_CR_AD_Detail_MD_EducationRequired">
+      <End Role="MD_EducationRequired" EntitySet="MD_EducationRequired" />
+      <End Role="CR_AD_Detail" EntitySet="CR_AD_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CR_AD_Detail_MD_ExperienceRequired" Association="Self.FK_CR_AD_Detail_MD_ExperienceRequired">
+      <End Role="MD_ExperienceRequired" EntitySet="MD_ExperienceRequired" />
+      <End Role="CR_AD_Detail" EntitySet="CR_AD_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CR_AD_Detail_MD_Position" Association="Self.FK_CR_AD_Detail_MD_Position">
+      <End Role="MD_Position" EntitySet="MD_Position" />
+      <End Role="CR_AD_Detail" EntitySet="CR_AD_Detail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CR_AD_Header_CR_User" Association="Self.FK_CR_AD_Header_CR_User">
+      <End Role="CR_User" EntitySet="CR_User" />
+      <End Role="CR_AD_Header" EntitySet="CR_AD_Header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CR_Company_MD_State" Association="Self.FK_CR_Company_MD_State">
+      <End Role="MD_State" EntitySet="MD_State" />
+      <End Role="CR_Company" EntitySet="CR_Company" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CR_User_CR_Company" Association="Self.FK_CR_User_CR_Company">
+      <End Role="CR_Company" EntitySet="CR_Company" />
+      <End Role="CR_User" EntitySet="CR_User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MD_State_MD_Country" Association="Self.FK_MD_State_MD_Country">
+      <End Role="MD_Country" EntitySet="MD_Country" />
+      <End Role="MD_State" EntitySet="MD_State" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CV_Education_MD_EducationLevel" Association="Self.FK_USER_CV_Education_MD_EducationLevel">
+      <End Role="MD_EducationLevel" EntitySet="MD_EducationLevel" />
+      <End Role="USER_CV_Education" EntitySet="USER_CV_Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CV_Education_MD_EducationSegment" Association="Self.FK_USER_CV_Education_MD_EducationSegment">
+      <End Role="MD_EducationSegment" EntitySet="MD_EducationSegment" />
+      <End Role="USER_CV_Education" EntitySet="USER_CV_Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CV_Education_MD_EducationStatus" Association="Self.FK_USER_CV_Education_MD_EducationStatus">
+      <End Role="MD_EducationStatus" EntitySet="MD_EducationStatus" />
+      <End Role="USER_CV_Education" EntitySet="USER_CV_Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CV_WorkExperience_MD_Position" Association="Self.FK_USER_CV_WorkExperience_MD_Position">
+      <End Role="MD_Position" EntitySet="MD_Position" />
+      <End Role="USER_CV_WorkExperience" EntitySet="USER_CV_WorkExperience" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USR_CV_Header_MD_State" Association="Self.FK_USR_CV_Header_MD_State">
+      <End Role="MD_State" EntitySet="MD_State" />
+      <End Role="USR_CV_Header" EntitySet="USR_CV_Header" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CV_Education_USR_CV_Header" Association="Self.FK_USER_CV_Education_USR_CV_Header">
+      <End Role="USR_CV_Header" EntitySet="USR_CV_Header" />
+      <End Role="USER_CV_Education" EntitySet="USER_CV_Education" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CV_WorkExperience_USR_CV_Header" Association="Self.FK_USER_CV_WorkExperience_USR_CV_Header">
+      <End Role="USR_CV_Header" EntitySet="USR_CV_Header" />
+      <End Role="USER_CV_WorkExperience" EntitySet="USER_CV_WorkExperience" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USR_CV_Header_USR_User" Association="Self.FK_USR_CV_Header_USR_User">
+      <End Role="USR_User" EntitySet="USR_User" />
+      <End Role="USR_CV_Header" EntitySet="USR_CV_Header" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

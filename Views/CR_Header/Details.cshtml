@@ -1,0 +1,74 @@
+﻿@model Gilbert.Models.CR_AD_Header
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CR_AD_Header</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreationDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreationDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FinishDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FinishDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SDescrip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SDescrip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LDescrip)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LDescrip)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IDStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IDStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CR_User.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CR_User.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a6a88e6c9c154ed1bb2867f36b438ac6" Name="Diagram1">
+        <EntityTypeShape EntityType="GilbertModel.CR_AD_Detail" Width="1.5" PointX="12" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.CR_AD_Header" Width="1.5" PointX="9.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.CR_Company" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.CR_User" Width="1.5" PointX="7.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.MD_Country" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.MD_EducationLevel" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.MD_EducationRequired" Width="1.875" PointX="9.75" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.MD_EducationSegment" Width="1.5" PointX="5.25" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.MD_EducationStatus" Width="1.5" PointX="5.25" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.MD_ExperienceRequired" Width="1.5" PointX="9.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.MD_Position" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.MD_State" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.MD_Status" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.USER_CV_Education" Width="1.5" PointX="7.5" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.USER_CV_WorkExperience" Width="1.5" PointX="10.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.USR_CV_Header" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GilbertModel.USR_User" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="GilbertModel.FK_CR_AD_Detail_CR_AD_Header" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_CR_AD_Detail_MD_EducationRequired" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_CR_AD_Detail_MD_ExperienceRequired" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_CR_AD_Detail_MD_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_CR_AD_Header_CR_User" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_CR_Company_MD_State" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_CR_User_CR_Company" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_MD_State_MD_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_USER_CV_Education_MD_EducationLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_USER_CV_Education_MD_EducationSegment" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_USER_CV_Education_MD_EducationStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_USER_CV_WorkExperience_MD_Position" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_USR_CV_Header_MD_State" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_USER_CV_Education_USR_CV_Header" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_USER_CV_WorkExperience_USR_CV_Header" ManuallyRouted="false" />
+        <AssociationConnector Association="GilbertModel.FK_USR_CV_Header_USR_User" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
