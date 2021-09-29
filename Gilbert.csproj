@@ -52,6 +52,11 @@
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\QRCoder.1.4.1\lib\net40\QRCoder.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -118,6 +123,7 @@
       <Private>True</Private>
       <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -132,6 +138,7 @@
     <Compile Include="Controllers\Company\EmployController.cs" />
     <Compile Include="Controllers\CR_HeaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -190,6 +197,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelGilbert.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Partial_Class.cs" />
     <Compile Include="Models\USER_CV_Education.cs">
       <DependentUpon>ModelGilbert.tt</DependentUpon>
     </Compile>
@@ -265,9 +273,11 @@
     <Content Include="Views\Company\Employ\Index.cshtml" />
     <Content Include="Views\Company\Employ\Create.cshtml" />
     <Content Include="Views\Company\Employ\_addDetail.cshtml" />
+    <Content Include="Views\Job\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\QR\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>

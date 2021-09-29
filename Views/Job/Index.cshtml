@@ -1,0 +1,26 @@
+﻿@model Gilbert.Models.CR_AD_Header
+
+Compañia: @Model.CR_User.CR_Company.CompanyName
+
+[StartDate] : @Model.StartDate
+[FinishDate] : @Model.FinishDate
+[SDescrip] : @Model.SDescrip
+[LDescrip] : @Model.LDescrip
+
+
+@foreach(Gilbert.Models.CR_AD_Detail Detail in Model.CR_AD_Detail)
+{
+<div>
+    "[IDPosition] :" + @Detail.MD_Position.LDescrip
+    "[MinAge] : " + @Detail.MinAge
+    "[MaxAge] : " + @Detail.MaxAge
+    "[IDEducation] : " + @Detail.MD_EducationRequired.LDescrip
+    "[IDExperience] : " + @Detail.MD_ExperienceRequired.LDescrip
+    "[Qty] : " + @Detail.Qty
+    "[PositionDescript] : " + @Detail.PositionDescript
+    "[TaskDescrip] : " + @Detail.TaskDescrip
+
+</div>
+
+
+}

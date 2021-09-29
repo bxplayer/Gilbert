@@ -13,11 +13,18 @@ namespace Gilbert
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "Job",
+            //    url: "{controller}/{uniqueID}",
+            //    defaults: new { controller = "Job", action = "Index", uniqueID = UrlParameter.Optional }
+            //);
+
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{id}/",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional}
             );
+
         }
     }
 }

@@ -11,63 +11,95 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            {{mensaje}}
+    <div class="form-horizontal">
 
 
 
-            <h4>CR_AD_Header</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
+        <h4>CR_AD_Header</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.FinishDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.FinishDate, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.FinishDate, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.SDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.SDescrip, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.SDescrip, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.LDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.LDescrip, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.LDescrip, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
             </div>
         </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.FinishDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FinishDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FinishDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SDescrip, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDescrip, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LDescrip, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LDescrip, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+
+        <input type="hidden" name="Details" id="Details" v-model="addInHidden" />
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 
 
     }
     @Html.Partial("~/Views/Company/Employ/_addDetail.cshtml")
 
-<div v-for="item in details">
-    {{ item.IDPosition }}
-</div>
+
+
+    <table class="table table-bordered" v-show="details_list.length">
+        <thead>
+            <tr>
+                <th>Position</th>
+                <th>MinAge</th>
+                <th>MaxAge</th>
+                <th>IDEducation</th>
+                <th>IDExperience</th>
+                <th>Qty</th>
+                <th>PositionDescript</th>
+                <th>TaskDescrip</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="(item, index) in details_list">
+                <td>{{ item.IDPosition }}</td>
+                <td>{{ item.MinAge }}</td>
+                <td>{{ item.MaxAge }}</td>
+                <td>{{ item.IDEducation }}</td>
+                <td>{{ item.IDExperience }}</td>
+                <td>{{ item.Qty }}</td>
+                <td>{{ item.PositionDescript }}</td>
+                <td>{{ item.TaskDescrip }}</td>
+                <td><button v-on:click="deleteDetail(index)">---</button></td>
+            </tr>
+        </tbody>        
+    </table>
+
+
 </div>
 <div>
     @Html.ActionLink("Back to List", "Index")
@@ -78,51 +110,80 @@
 }
 
 <script type="text/javascript">
-    let detail = {
-         IDPosition:1
+
+    const detail = {
+        IDPosition: 1,
+        MinAge: 18,
+        MaxAge: 65,
+        IDEducation: 1,           
+        IDExperience: 1,            
+        Qty: 1,            
+        PositionDescript: '',            
+        TaskDescrip: '',        
     }
 
-    Object.freeze(detail)
+    const detail_validation = {
+        IDPosition: {    
+            required: true,
+            message: 'Debe seleccionar'
+        },
+        MinAge: {            
+            required: true,
+            message: 'Debe seleccionar'
+        },
+        MaxAge: {            
+            required: false,
+            message: 'Debe seleccionar'
+        },
+        IDEducation: {            
+            required: false,
+            message: 'Debe seleccionar'
+        },
+        IDExperience: {            
+            required: false,
+            message: 'Debe seleccionar'
+        },
+        Qty: {            
+            required: false,
+            message: 'Debe seleccionar'
+        },
+        PositionDescript: {            
+            required: false,
+            message: 'Debe seleccionar'
+        },
+        TaskDescrip: {            
+            required: false,
+            message: 'Debe seleccionar'
+        }
+    }
+
 
     let app = new Vue({
         el: '#root',
         data: {
             mensaje: 'Hola Vue!',
-            details: [],  
-            detail_list: detail
-
+            details_list: [],  
+            detail: detail,
+            detail_validation: detail_validation
         },
         methods: {
-            addDetail: function () {                      
-                this.detail_list.IDPosition = this.IDPosition;
-                this.details.push(this.detail_list)
+            addDetail: function () { 
+                this.validation()
+                //this.details_list.push(JSON.parse(JSON.stringify(this.detail)));
+                this.details_list.push({ ...this.detail });                     
+            },     
+            deleteDetail: function (index) {                
+                this.details_list.splice(index, 1);                
             },
-            validation: function() {
-
+            validation: function () {               
+                return true;
+            }
+        },
+        computed: {
+            addInHidden: function () {
+                return JSON.stringify(this.details_list);
             }
         }
     })
-
-    //const detail = {
-    //     IDPosition
-    //    ,MinAge
-    //    ,MaxAge
-    //    ,IDEducation
-    //    ,IDExperience
-    //    ,Qty
-    //    ,PositionDescript
-    //    ,TaskDescrip
-    //}
-
-    //let btn_add_detail = document.getElementById("btn_add_detail");
-
-    
-    //btn_add_detail.addEventListener("click", () => {
-
-    //    detail.IDPosition = 1;
-    //    detail.MinAge = 18;
-    //    detail.MaxAge
-
-    //}, false);
 
 </script>
