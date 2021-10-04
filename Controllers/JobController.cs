@@ -14,15 +14,36 @@ namespace Gilbert.Controllers
         // GET: Job
 
         //[Route("Job/{uniqueID:string?}")]
+
+       
         public ActionResult Index(string uniqueID)
         {
             if (String.IsNullOrEmpty(uniqueID))
             {
-
+                return View(Auxiliar.ViewsPath.JobPath("unknown"));
             }
 
             CR_AD_Header cR_AD_Header = db.CR_AD_Header.Where(x => x.Unique_ID.ToString() == uniqueID).FirstOrDefault();
-            return View(cR_AD_Header);
+
+            if (cR_AD_Header == null)
+            {
+                return View(Auxiliar.ViewsPath.JobPath("unknown"));
+            }
+
+            USR_User uSR_User = db.USR_User.Where(x => x.ID == 2).FirstOrDefault();
+
+            JobsPostulate jobsPostulate = new JobsPostulate();
+            jobsPostulate.cR_AD_Header = cR_AD_Header;
+            jobsPostulate.uSR_User = uSR_User;
+
+
+            return View(jobsPostulate);
+        }
+       
+
+        private void GetUserData()
+        {
+
         }
 
         protected override void Dispose(bool disposing)

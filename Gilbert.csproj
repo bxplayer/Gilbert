@@ -274,6 +274,7 @@
     <Content Include="Views\Company\Employ\Create.cshtml" />
     <Content Include="Views\Company\Employ\_addDetail.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
+    <Content Include="Views\Job\unknown.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

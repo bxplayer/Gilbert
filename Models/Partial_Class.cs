@@ -15,4 +15,10 @@ namespace Gilbert.Models
         [Required]
         public string Details { get; set; }
     }
+
+    public partial class JobsPostulate
+    {
+        public CR_AD_Header cR_AD_Header { get; set; }
+        public USR_User uSR_User { get; set; }
+    }
 }

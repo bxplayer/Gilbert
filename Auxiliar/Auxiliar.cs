@@ -33,6 +33,11 @@ namespace Gilbert.Auxiliar
             return "~/Views/Company/Employ/"+ view + ".cshtml";
         }
 
+        public static string JobPath(string view)
+        {
+            return "~/Views/Job/" + view + ".cshtml";
+        }
+
     }
 
     public static class MDsa
