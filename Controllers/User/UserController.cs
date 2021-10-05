@@ -15,7 +15,7 @@ namespace Gilbert.Controllers.Users
     {
         private GilbertEntities db = new GilbertEntities();
 
-        // GET: User/Create
+        // GET: User/Create/
         public ActionResult Create()
         {
             return View();
