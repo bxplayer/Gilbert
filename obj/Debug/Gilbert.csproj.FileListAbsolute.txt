@@ -179,3 +179,4 @@ C:\Users\Rodrigo\Source\Repos\Gilbert\obj\Debug\Gilbert.csproj.CopyComplete
 C:\Users\Rodrigo\Source\Repos\Gilbert\obj\Debug\Gilbert.dll
 C:\Users\Rodrigo\Source\Repos\Gilbert\obj\Debug\Gilbert.pdb
 C:\Users\sesa461752\source\repos\Gilbert\bin\QRCoder.dll
+C:\Users\Rodrigo\source\repos\Gilbert\bin\QRCoder.dll

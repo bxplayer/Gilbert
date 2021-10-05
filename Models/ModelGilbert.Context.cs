@@ -21,7 +21,7 @@ namespace Gilbert.Models
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {            
+        {
             throw new UnintentionalCodeFirstException();
         }
     
@@ -42,5 +42,6 @@ namespace Gilbert.Models
         public virtual DbSet<USER_CV_WorkExperience> USER_CV_WorkExperience { get; set; }
         public virtual DbSet<USR_CV_Header> USR_CV_Header { get; set; }
         public virtual DbSet<USR_User> USR_User { get; set; }
+        public virtual DbSet<USER_CR_Postulate> USER_CR_Postulate { get; set; }
     }
 }

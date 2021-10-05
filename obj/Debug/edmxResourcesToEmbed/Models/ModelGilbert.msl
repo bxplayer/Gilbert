@@ -211,5 +211,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="USER_CR_Postulate">
+      <EntityTypeMapping TypeName="GilbertModel.USER_CR_Postulate">
+        <MappingFragment StoreEntitySet="USER_CR_Postulate">
+          <ScalarProperty Name="IDCRADDetail" ColumnName="IDCRADDetail" />
+          <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

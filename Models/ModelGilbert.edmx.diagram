@@ -38,6 +38,9 @@
         <AssociationConnector Association="GilbertModel.FK_USER_CV_Education_USR_CV_Header" ManuallyRouted="false" />
         <AssociationConnector Association="GilbertModel.FK_USER_CV_WorkExperience_USR_CV_Header" ManuallyRouted="false" />
         <AssociationConnector Association="GilbertModel.FK_USR_CV_Header_USR_User" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GilbertModel.USER_CR_Postulate" Width="1.5" PointX="14.25" PointY="4.5" />
+        <AssociationConnector Association="GilbertModel.FK_USER_CR_Postulate_CR_AD_Detail" />
+        <AssociationConnector Association="GilbertModel.FK_USER_CR_Postulate_USR_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

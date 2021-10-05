@@ -21,5 +21,7 @@ namespace Gilbert.Models
         public CR_AD_Header cR_AD_Header { get; set; }
         public USR_User uSR_User { get; set; }
         public USR_CV_Header uSR_CV_Header { get; set; }
+
+        public List<long> uSER_CR_Postulate { get; set; }
     }
 }

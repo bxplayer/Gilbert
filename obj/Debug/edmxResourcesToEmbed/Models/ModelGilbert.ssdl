@@ -138,6 +138,14 @@
     <Property Name="SDescrip" Type="varchar" MaxLength="120" Nullable="false" />
     <Property Name="LDescrip" Type="varchar" MaxLength="500" Nullable="false" />
   </EntityType>
+  <EntityType Name="USER_CR_Postulate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDUser" Type="bigint" Nullable="false" />
+    <Property Name="IDCRADDetail" Type="bigint" Nullable="false" />
+  </EntityType>
   <EntityType Name="USER_CV_Education">
     <Key>
       <PropertyRef Name="ID" />
@@ -289,6 +297,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_USER_CR_Postulate_CR_AD_Detail">
+    <End Role="CR_AD_Detail" Type="Self.CR_AD_Detail" Multiplicity="1" />
+    <End Role="USER_CR_Postulate" Type="Self.USER_CR_Postulate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CR_AD_Detail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CR_Postulate">
+        <PropertyRef Name="IDCRADDetail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CR_Postulate_USR_User">
+    <End Role="USR_User" Type="Self.USR_User" Multiplicity="1" />
+    <End Role="USER_CR_Postulate" Type="Self.USER_CR_Postulate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USR_User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CR_Postulate">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_USER_CV_Education_MD_EducationLevel">
     <End Role="MD_EducationLevel" Type="Self.MD_EducationLevel" Multiplicity="1" />
     <End Role="USER_CV_Education" Type="Self.USER_CV_Education" Multiplicity="*" />
@@ -399,6 +431,7 @@
     <EntitySet Name="MD_Position" EntityType="Self.MD_Position" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MD_State" EntityType="Self.MD_State" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MD_Status" EntityType="Self.MD_Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USER_CR_Postulate" EntityType="Self.USER_CR_Postulate" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USER_CV_Education" EntityType="Self.USER_CV_Education" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USER_CV_WorkExperience" EntityType="Self.USER_CV_WorkExperience" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USR_CV_Header" EntityType="Self.USR_CV_Header" Schema="dbo" store:Type="Tables" />
@@ -434,6 +467,14 @@
     <AssociationSet Name="FK_MD_State_MD_Country" Association="Self.FK_MD_State_MD_Country">
       <End Role="MD_Country" EntitySet="MD_Country" />
       <End Role="MD_State" EntitySet="MD_State" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CR_Postulate_CR_AD_Detail" Association="Self.FK_USER_CR_Postulate_CR_AD_Detail">
+      <End Role="CR_AD_Detail" EntitySet="CR_AD_Detail" />
+      <End Role="USER_CR_Postulate" EntitySet="USER_CR_Postulate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CR_Postulate_USR_User" Association="Self.FK_USER_CR_Postulate_USR_User">
+      <End Role="USR_User" EntitySet="USR_User" />
+      <End Role="USER_CR_Postulate" EntitySet="USER_CR_Postulate" />
     </AssociationSet>
     <AssociationSet Name="FK_USER_CV_Education_MD_EducationLevel" Association="Self.FK_USER_CV_Education_MD_EducationLevel">
       <End Role="MD_EducationLevel" EntitySet="MD_EducationLevel" />

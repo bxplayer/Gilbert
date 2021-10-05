@@ -199,6 +199,9 @@
       <DependentUpon>ModelGilbert.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Partial_Class.cs" />
+    <Compile Include="Models\USER_CR_Postulate.cs">
+      <DependentUpon>ModelGilbert.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\USER_CV_Education.cs">
       <DependentUpon>ModelGilbert.tt</DependentUpon>
     </Compile>

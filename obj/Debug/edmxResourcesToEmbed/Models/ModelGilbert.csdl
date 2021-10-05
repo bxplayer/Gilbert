@@ -19,6 +19,7 @@
     <NavigationProperty Name="MD_EducationRequired" Relationship="Self.FK_CR_AD_Detail_MD_EducationRequired" FromRole="CR_AD_Detail" ToRole="MD_EducationRequired" />
     <NavigationProperty Name="MD_ExperienceRequired" Relationship="Self.FK_CR_AD_Detail_MD_ExperienceRequired" FromRole="CR_AD_Detail" ToRole="MD_ExperienceRequired" />
     <NavigationProperty Name="MD_Position" Relationship="Self.FK_CR_AD_Detail_MD_Position" FromRole="CR_AD_Detail" ToRole="MD_Position" />
+    <NavigationProperty Name="USER_CR_Postulate" Relationship="GilbertModel.FK_USER_CR_Postulate_CR_AD_Detail" FromRole="CR_AD_Detail" ToRole="USER_CR_Postulate" />
   </EntityType>
   <EntityType Name="CR_AD_Header">
     <Key>
@@ -224,6 +225,7 @@
     <Property Name="Password" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
     <Property Name="IDStatus" Type="Int32" Nullable="false" />
     <NavigationProperty Name="USR_CV_Header" Relationship="Self.FK_USR_CV_Header_USR_User" FromRole="USR_User" ToRole="USR_CV_Header" />
+    <NavigationProperty Name="USER_CR_Postulate" Relationship="GilbertModel.FK_USER_CR_Postulate_USR_User" FromRole="USR_User" ToRole="USER_CR_Postulate" />
   </EntityType>
   <Association Name="FK_CR_AD_Detail_CR_AD_Header">
     <End Role="CR_AD_Header" Type="Self.CR_AD_Header" Multiplicity="1" />
@@ -499,5 +501,48 @@
       <End Role="USR_User" EntitySet="USR_User" />
       <End Role="USR_CV_Header" EntitySet="USR_CV_Header" />
     </AssociationSet>
+    <EntitySet Name="USER_CR_Postulate" EntityType="GilbertModel.USER_CR_Postulate" />
+    <AssociationSet Name="FK_USER_CR_Postulate_CR_AD_Detail" Association="GilbertModel.FK_USER_CR_Postulate_CR_AD_Detail">
+      <End Role="CR_AD_Detail" EntitySet="CR_AD_Detail" />
+      <End Role="USER_CR_Postulate" EntitySet="USER_CR_Postulate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_USER_CR_Postulate_USR_User" Association="GilbertModel.FK_USER_CR_Postulate_USR_User">
+      <End Role="USR_User" EntitySet="USR_User" />
+      <End Role="USER_CR_Postulate" EntitySet="USER_CR_Postulate" />
+    </AssociationSet>
   </EntityContainer>
+  <EntityType Name="USER_CR_Postulate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IDUser" Type="Int64" Nullable="false" />
+    <Property Name="IDCRADDetail" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="CR_AD_Detail" Relationship="GilbertModel.FK_USER_CR_Postulate_CR_AD_Detail" FromRole="USER_CR_Postulate" ToRole="CR_AD_Detail" />
+    <NavigationProperty Name="USR_User" Relationship="GilbertModel.FK_USER_CR_Postulate_USR_User" FromRole="USER_CR_Postulate" ToRole="USR_User" />
+  </EntityType>
+  <Association Name="FK_USER_CR_Postulate_CR_AD_Detail">
+    <End Type="GilbertModel.CR_AD_Detail" Role="CR_AD_Detail" Multiplicity="1" />
+    <End Type="GilbertModel.USER_CR_Postulate" Role="USER_CR_Postulate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CR_AD_Detail">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CR_Postulate">
+        <PropertyRef Name="IDCRADDetail" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_USER_CR_Postulate_USR_User">
+    <End Type="GilbertModel.USR_User" Role="USR_User" Multiplicity="1" />
+    <End Type="GilbertModel.USER_CR_Postulate" Role="USER_CR_Postulate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USR_User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="USER_CR_Postulate">
+        <PropertyRef Name="IDUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

@@ -18,6 +18,7 @@ namespace Gilbert.Models
         public USR_User()
         {
             this.USR_CV_Header = new HashSet<USR_CV_Header>();
+            this.USER_CR_Postulate = new HashSet<USER_CR_Postulate>();
         }
     
         public long ID { get; set; }
@@ -31,5 +32,7 @@ namespace Gilbert.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<USR_CV_Header> USR_CV_Header { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USER_CR_Postulate> USER_CR_Postulate { get; set; }
     }
 }

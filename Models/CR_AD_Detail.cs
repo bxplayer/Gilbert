@@ -14,6 +14,12 @@ namespace Gilbert.Models
     
     public partial class CR_AD_Detail
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CR_AD_Detail()
+        {
+            this.USER_CR_Postulate = new HashSet<USER_CR_Postulate>();
+        }
+    
         public long ID { get; set; }
         public long IDAdHeader { get; set; }
         public long IDPosition { get; set; }
@@ -30,5 +36,7 @@ namespace Gilbert.Models
         public virtual MD_EducationRequired MD_EducationRequired { get; set; }
         public virtual MD_ExperienceRequired MD_ExperienceRequired { get; set; }
         public virtual MD_Position MD_Position { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<USER_CR_Postulate> USER_CR_Postulate { get; set; }
     }
 }

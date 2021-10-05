@@ -1,32 +1,37 @@
 ﻿@model Gilbert.Models.JobsPostulate
 
-@if (Model.uSR_User != null)
-{
-    <div>
-        @Model.uSR_User.UserName
-        @Model.uSR_User.Email
-    </div>
 
-}
-
-
-Compañia: @Model.cR_AD_Header.CR_User.CR_Company.CompanyName
-
-[StartDate] : @Model.cR_AD_Header.StartDate
-[FinishDate] : @Model.cR_AD_Header.FinishDate
-[SDescrip] : @Model.cR_AD_Header.SDescrip
-[LDescrip] : @Model.cR_AD_Header.LDescrip
+<div id="root">
 
 
 
-@foreach (Gilbert.Models.CR_AD_Detail Detail in Model.cR_AD_Header.CR_AD_Detail)
-{
+    @if (Model.uSR_User != null)
+    {
+        <div>
+            @Model.uSR_User.UserName
+            @Model.uSR_User.Email
+        </div>
+
+    }
+
+
+    Compañia: @Model.cR_AD_Header.CR_User.CR_Company.CompanyName
+
+    [StartDate] : @Model.cR_AD_Header.StartDate
+    [FinishDate] : @Model.cR_AD_Header.FinishDate
+    [SDescrip] : @Model.cR_AD_Header.SDescrip
+    [LDescrip] : @Model.cR_AD_Header.LDescrip
+
+
+
+    @foreach (Gilbert.Models.CR_AD_Detail Detail in Model.cR_AD_Header.CR_AD_Detail)
+    {
 
 <div>
     @{
         var position = Model.uSR_CV_Header.USER_CV_WorkExperience.Where(x => x.IDPosition == Detail.IDPosition).FirstOrDefault();
     }
-    @if(position != null)
+    @if (position != null)
     {
         <b>SI</b>
     }
@@ -38,10 +43,40 @@ Compañia: @Model.cR_AD_Header.CR_User.CR_Company.CompanyName
     "[Qty] : " + @Detail.Qty
     "[PositionDescript] : " + @Detail.PositionDescript
     "[TaskDescrip] : " + @Detail.TaskDescrip
-    <button>Postularme</button>
+
+    @if (Model.uSER_CR_Postulate.IndexOf(Detail.ID) == -1)
+    {
+        <button v-on:click="postulate(@Detail.ID)" v-if="array_postulates.indexOf(@Detail.ID) === -1">Postularme</button>
+    }
+    else if(Model.uSER_CR_Postulate.IndexOf(Detail.ID) >= 0)
+    {
+        <b>PostulaDO</b>
+    }
+    <b v-show="array_postulates.indexOf(@Detail.ID) >= 0">PostulaDO</b>
 </div>
 
 
-}
+    }
 
 
+</div>
+
+
+<script type="text/javascript">
+    let app = new Vue({
+        el: '#root',
+        data: {
+            array_postulates:[]
+        },
+        methods: {
+            postulate: function (id) {
+                
+                axios.post('/Job/Postulate', { "id": id})
+                .then(response => {
+                    this.array_postulates.push(id); 
+                })
+
+            }
+        }        
+    })
+</script>
