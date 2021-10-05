@@ -31,20 +31,17 @@ namespace Gilbert.Controllers
             }
 
             USR_User uSR_User = db.USR_User.Where(x => x.ID == 2).FirstOrDefault();
+            USR_CV_Header uSR_CV_Header = db.USR_CV_Header.Where(x => x.IDUser == 2).FirstOrDefault();            
 
             JobsPostulate jobsPostulate = new JobsPostulate();
             jobsPostulate.cR_AD_Header = cR_AD_Header;
             jobsPostulate.uSR_User = uSR_User;
+            jobsPostulate.uSR_CV_Header = uSR_CV_Header;
 
 
             return View(jobsPostulate);
         }
        
-
-        private void GetUserData()
-        {
-
-        }
 
         protected override void Dispose(bool disposing)
         {
