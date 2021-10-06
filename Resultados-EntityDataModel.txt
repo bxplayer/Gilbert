@@ -1,0 +1,9 @@
+﻿Archivo de modelo generado: ModelGilbert.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.7493107.
+La generación del modelo tardó 00:00:01.4849825.
+Archivo de modelo generado: ModelGilbert.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.7128103.
+La generación del modelo tardó 00:00:01.4197445.
+Archivo de modelo generado: ModelGilbert.edmx.
+La carga de los metadatos desde la base de datos tardó 00:00:00.4918716.
+La generación del modelo tardó 00:00:00.4225823.

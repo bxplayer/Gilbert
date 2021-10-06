@@ -1,24 +1,41 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.mt-custom-6 {
+    margin-top: 3.5rem !important;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    .mt-custom-6  .section-title {
+        margin-top: 2.5rem !important;
+    }
+
+    .steps .container .row p {
+        margin-bottom: 0.8rem;
+    }
+
+.button-custom {
+    background: #e2e5fe;
+    border: 0;
+    padding: 10px 24px;
+    color: #3b4ef8;
+    transition: 0.4s;
+    border-radius: 5px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+    .button-custom:hover {
+        background: #0a22f6;
+        color:white;
+    }
+
+.postulado {
+    padding: 10px 24px;
+    border-radius: 5px;
+    background-color: #e2fef1;
+    color: #147a46;
+    font-size: .875rem;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+
+.fecha_limite {
+    color: #aaaaaa;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
 }

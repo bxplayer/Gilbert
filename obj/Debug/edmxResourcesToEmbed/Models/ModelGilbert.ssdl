@@ -193,12 +193,12 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Email" Type="varchar" MaxLength="256" />
-    <Property Name="UserName" Type="varchar" MaxLength="80" />
-    <Property Name="UserLastName" Type="varchar" MaxLength="80" />
+    <Property Name="Email" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="UserLastName" Type="varchar" MaxLength="80" Nullable="false" />
     <Property Name="Telephone" Type="varchar" MaxLength="30" Nullable="false" />
-    <Property Name="UserPhoto" Type="varchar" MaxLength="80" Nullable="false" />
-    <Property Name="Password" Type="varchar" MaxLength="80" />
+    <Property Name="UserPhoto" Type="varchar" MaxLength="80" />
+    <Property Name="Password" Type="varchar" MaxLength="80" Nullable="false" />
     <Property Name="IDStatus" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_CR_AD_Detail_CR_AD_Header">

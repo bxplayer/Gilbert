@@ -217,12 +217,12 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-    <Property Name="UserName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-    <Property Name="UserLastName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UserLastName" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Telephone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="UserPhoto" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="UserPhoto" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="IDStatus" Type="Int32" Nullable="false" />
     <NavigationProperty Name="USR_CV_Header" Relationship="Self.FK_USR_CV_Header_USR_User" FromRole="USR_User" ToRole="USR_CV_Header" />
     <NavigationProperty Name="USER_CR_Postulate" Relationship="GilbertModel.FK_USER_CR_Postulate_USR_User" FromRole="USR_User" ToRole="USER_CR_Postulate" />

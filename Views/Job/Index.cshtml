@@ -1,82 +1,115 @@
 ﻿@model Gilbert.Models.JobsPostulate
 
 
-<div id="root">
 
 
+<!-- ======= Steps Section ======= -->
+<section id="root" class="steps mt-custom-6">
+    <div class="container">
 
-    @if (Model.uSR_User != null)
-    {
-        <div>
-            @Model.uSR_User.UserName
-            @Model.uSR_User.Email
+        <div class="section-title">
+            <h2>@Model.cR_AD_Header.CR_User.CR_Company.CompanyName</h2>
+            <p>@Model.cR_AD_Header.LDescrip</p>
+            
+            <span class="fecha_limite"><i class="bx bx-calendar"></i> Finaliza en @Model.cR_AD_Header.FinishDate.ToString("dd-MM-yyyy")</span>
         </div>
 
-    }
+        <div class="row no-gutters" data-aos="fade-up">
+            @foreach (Gilbert.Models.CR_AD_Detail Detail in Model.cR_AD_Header.CR_AD_Detail)
+            {
+                <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="100">
+                    @{
+                        var position = Model.uSR_CV_Header.USER_CV_WorkExperience.Where(x => x.IDPosition == Detail.IDPosition).FirstOrDefault();
+                        if (position != null)
+                        {
+                            <span>Posicion Recomendada</span>
+                        }
+                        else
+                        {
+                            <span>&nbsp;</span>
+                        }
+                    }
 
+                    <h4>@Detail.MD_Position.LDescrip</h4>
+                    <p><b>Position:</b> @Detail.PositionDescript</p>
 
-    Compañia: @Model.cR_AD_Header.CR_User.CR_Company.CompanyName
+                    <p><b>Task:</b> @Detail.TaskDescrip</p>
+                    <p><i class="bx bx-user"></i> Cantidad a cubrir: @Detail.Qty</p>
+                    <p><i class="bx bx-calendar"></i> Desde @Detail.MinAge hasta @Detail.MaxAge años</p>
+                    <p><i class="bx bxs-school"></i> Educacion: @Detail.MD_EducationRequired.LDescrip</p>
+                    <p><i class="bx bx-store-alt"></i> Experiencia: @Detail.MD_ExperienceRequired.LDescrip</p>
 
-    [StartDate] : @Model.cR_AD_Header.StartDate
-    [FinishDate] : @Model.cR_AD_Header.FinishDate
-    [SDescrip] : @Model.cR_AD_Header.SDescrip
-    [LDescrip] : @Model.cR_AD_Header.LDescrip
+                    <div class="d-flex align-content-end">                        
+                        @if (Model.uSER_CR_Postulate.IndexOf(Detail.ID) == -1)
+                        {                            
+                            <button class="btn btn-sm button-custom w-100 mt-4" v-on:click="postulate(@Detail.ID)" v-if="array_postulates.indexOf(@Detail.ID) === -1">Postularme</button>
+                        }
+                        else if (Model.uSER_CR_Postulate.IndexOf(Detail.ID) >= 0)
+                        {
+                            <div class="postulado w-100 mt-4" ><i class="bx bx-check"></i> Postulado</div>
+                        }
+                        
+                        <div class="postulado w-100 mt-4" v-show="array_postulates.indexOf(@Detail.ID) >= 0" ><i class="bx bx-check"></i> Postulado</div>                        
+                    </div>
+            </div>
+            }
+        </div>
 
-
-
-    @foreach (Gilbert.Models.CR_AD_Detail Detail in Model.cR_AD_Header.CR_AD_Detail)
+    </div>
+</section><!-- End Steps Section -->
+@*@foreach (Gilbert.Models.CR_AD_Detail Detail in Model.cR_AD_Header.CR_AD_Detail)
     {
 
-<div>
-    @{
-        var position = Model.uSR_CV_Header.USER_CV_WorkExperience.Where(x => x.IDPosition == Detail.IDPosition).FirstOrDefault();
-    }
-    @if (position != null)
-    {
-        <b>SI</b>
-    }
-    "[IDPosition] :" + @Detail.MD_Position.LDescrip
-    "[MinAge] : " + @Detail.MinAge
-    "[MaxAge] : " + @Detail.MaxAge
-    "[IDEducation] : " + @Detail.MD_EducationRequired.LDescrip
-    "[IDExperience] : " + @Detail.MD_ExperienceRequired.LDescrip
-    "[Qty] : " + @Detail.Qty
-    "[PositionDescript] : " + @Detail.PositionDescript
-    "[TaskDescrip] : " + @Detail.TaskDescrip
+        <div>
+            @{
+                var position = Model.uSR_CV_Header.USER_CV_WorkExperience.Where(x => x.IDPosition == Detail.IDPosition).FirstOrDefault();
+            }
+            @if (position != null)
+            {
+                <b>SI</b>
+            }
+            "[IDPosition] :" + @Detail.MD_Position.LDescrip
+            "[MinAge] : " + @Detail.MinAge
+            "[MaxAge] : " + @Detail.MaxAge
+            "[IDEducation] : " + @Detail.MD_EducationRequired.LDescrip
+            "[IDExperience] : " + @Detail.MD_ExperienceRequired.LDescrip
+            "[Qty] : " + @Detail.Qty
+            "[PositionDescript] : " + @Detail.PositionDescript
+            "[TaskDescrip] : " + @Detail.TaskDescrip
 
-    @if (Model.uSER_CR_Postulate.IndexOf(Detail.ID) == -1)
-    {
-        <button v-on:click="postulate(@Detail.ID)" v-if="array_postulates.indexOf(@Detail.ID) === -1">Postularme</button>
-    }
-    else if(Model.uSER_CR_Postulate.IndexOf(Detail.ID) >= 0)
-    {
-        <b>PostulaDO</b>
-    }
-    <b v-show="array_postulates.indexOf(@Detail.ID) >= 0">PostulaDO</b>
-</div>
-
-
-    }
+            @if (Model.uSER_CR_Postulate.IndexOf(Detail.ID) == -1)
+            {
+                <button v-on:click="postulate(@Detail.ID)" v-if="array_postulates.indexOf(@Detail.ID) === -1">Postularme</button>
+            }
+            else if (Model.uSER_CR_Postulate.IndexOf(Detail.ID) >= 0)
+            {
+                <b>PostulaDO</b>
+            }
+            <b v-show="array_postulates.indexOf(@Detail.ID) >= 0">PostulaDO</b>
+        </div>
 
 
-</div>
+    }*@
+
+
+
 
 
 <script type="text/javascript">
     let app = new Vue({
         el: '#root',
         data: {
-            array_postulates:[]
+            array_postulates: []
         },
         methods: {
             postulate: function (id) {
-                
-                axios.post('/Job/Postulate', { "id": id})
-                .then(response => {
-                    this.array_postulates.push(id); 
-                })
+
+                axios.post('/Job/Postulate', { "id": id })
+                    .then(response => {
+                        this.array_postulates.push(id);
+                    })
 
             }
-        }        
+        }
     })
 </script>

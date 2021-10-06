@@ -4,75 +4,72 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<section class="mt-5">
+    <div class="container">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CreationDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FinishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SDescrip)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LDescrip)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IDStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Unique_ID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CR_User.Email)
-        </th>
-        <th></th>
-        <th></th>
-    </tr>
+        <div class="section-title">
+            <h2>Listado puestos de trabajo</h2>                        
+        </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FinishDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SDescrip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LDescrip)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IDStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Unique_ID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CR_User.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-        @{var qr = "/Images/QR/" + item.Unique_ID + ".png"; }
-        <td><img src=@qr width="50" /></td>
-    </tr>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>                
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FinishDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SDescrip)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(model => model.LDescrip)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.IDStatus)
+                </th> 
+                <th>
+                    Postulados
+                </th>
+                
+                <th></th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>                    
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FinishDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SDescrip)
+                    </td>
+                    @*<td>
+                        @Html.DisplayFor(modelItem => item.LDescrip)
+                    </td>*@
+                    <td>
+                        @Html.DisplayFor(modelItem => item.IDStatus)
+                    </td>                                        
+                    <td>
+                        90
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                    @{var qr = "/Images/QR/" + item.Unique_ID + ".png"; }
+                    <td><img src=@qr width="50" /></td>
+                </tr>
             }
 
-</table>
+        </table>
+    </div>
+</section>

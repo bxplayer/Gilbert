@@ -217,14 +217,71 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animations.css" />
+    <Content Include="Content\aos.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-grid.rtl.css" />
+    <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-icons.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.css" />
+    <Content Include="Content\bootstrap-reboot.rtl.min.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-utilities.css" />
+    <Content Include="Content\bootstrap-utilities.min.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.css" />
+    <Content Include="Content\bootstrap-utilities.rtl.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\boxicons.css" />
+    <Content Include="Content\boxicons.min.css" />
+    <Content Include="Content\fonts\boxicons.svg" />
+    <Content Include="Content\glightbox.css" />
+    <Content Include="Content\glightbox.min.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\swiper-bundle.min.css" />
+    <Content Include="Content\transformations.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\img\apple-touch-icon.png" />
+    <Content Include="Images\img\clients\client-1.png" />
+    <Content Include="Images\img\clients\client-2.png" />
+    <Content Include="Images\img\clients\client-3.png" />
+    <Content Include="Images\img\clients\client-4.png" />
+    <Content Include="Images\img\clients\client-5.png" />
+    <Content Include="Images\img\clients\client-6.png" />
+    <Content Include="Images\img\favicon.png" />
+    <Content Include="Images\img\features-1.png" />
+    <Content Include="Images\img\features-2.png" />
+    <Content Include="Images\img\features-3.png" />
+    <Content Include="Images\img\features-4.png" />
+    <Content Include="Images\img\hero-img.png" />
+    <Content Include="Images\img\portfolio\portfolio-1.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-2.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-3.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-4.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-5.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-6.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-7.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-8.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-9.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-details-1.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-details-2.jpg" />
+    <Content Include="Images\img\portfolio\portfolio-details-3.jpg" />
+    <Content Include="Images\img\team\team-1.jpg" />
+    <Content Include="Images\img\team\team-2.jpg" />
+    <Content Include="Images\img\team\team-3.jpg" />
+    <Content Include="Images\img\team\team-4.jpg" />
+    <Content Include="Images\img\testimonials\testimonials-1.jpg" />
+    <Content Include="Images\img\testimonials\testimonials-2.jpg" />
+    <Content Include="Images\img\testimonials\testimonials-3.jpg" />
+    <Content Include="Images\img\testimonials\testimonials-4.jpg" />
+    <Content Include="Images\img\testimonials\testimonials-5.jpg" />
     <Content Include="Models\ModelGilbert.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelGilbert.Context.cs</LastGenOutput>
@@ -235,6 +292,7 @@
       <DependentUpon>ModelGilbert.edmx</DependentUpon>
       <LastGenOutput>ModelGilbert.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\aos.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\ModelGilbert.edmx">
@@ -244,7 +302,17 @@
     <Content Include="Models\ModelGilbert.edmx.diagram">
       <DependentUpon>ModelGilbert.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\fonts\bootstrap-icons.woff" />
+    <Content Include="Content\fonts\bootstrap-icons.woff2" />
+    <Content Include="Content\fonts\boxicons.eot" />
+    <Content Include="Content\fonts\boxicons.ttf" />
+    <Content Include="Content\fonts\boxicons.woff" />
+    <Content Include="Content\fonts\boxicons.woff2" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\glightbox.js" />
+    <Content Include="Scripts\glightbox.min.js" />
+    <Content Include="Scripts\isotope.pkgd.js" />
+    <Content Include="Scripts\isotope.pkgd.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -254,7 +322,9 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\swiper-bundle.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -280,15 +350,13 @@
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\Job\unknown.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Details.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\QR\" />
-    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

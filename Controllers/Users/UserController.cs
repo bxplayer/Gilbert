@@ -8,6 +8,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Gilbert.Models;
+using System.Data.Entity.Validation;
 
 namespace Gilbert.Controllers.Users
 {
@@ -21,20 +22,7 @@ namespace Gilbert.Controllers.Users
             return View(await db.USR_User.ToListAsync());
         }
 
-        // GET: User/Details/5
-        public async Task<ActionResult> Details(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            USR_User uSR_User = await db.USR_User.FindAsync(id);
-            if (uSR_User == null)
-            {
-                return HttpNotFound();
-            }
-            return View(uSR_User);
-        }
+        
 
         // GET: User/Create
         public ActionResult Create()
@@ -47,14 +35,46 @@ namespace Gilbert.Controllers.Users
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Email,UserName,UserLastName,Telephone,UserPhoto,Password,IDStatus")] USR_User uSR_User)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Email,UserName,UserLastName,Telephone,Password")] USR_User uSR_User)
         {
-            if (ModelState.IsValid)
-            {
-                db.USR_User.Add(uSR_User);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
+            //try
+            //{
+            
+                if (ModelState.IsValid)
+                {
+
+                    var email = db.USR_User.FirstOrDefault(s => s.Email == uSR_User.Email);
+                    if(email == null)
+                    {
+                        uSR_User.Password = Auxiliar.Auxiliar.GetMD5(uSR_User.Password);
+                        db.USR_User.Add(uSR_User);
+                        await db.SaveChangesAsync();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Email", "Mail duplicado");
+                        return View(uSR_User);
+                    }
+
+
+                }
+
+            //}
+            //catch (DbEntityValidationException e)
+            //{
+            //    foreach (var eve in e.EntityValidationErrors)
+            //    {
+            //        Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+            //            eve.Entry.Entity.GetType().Name, eve.Entry.State);
+            //        foreach (var ve in eve.ValidationErrors)
+            //        {
+            //            Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+            //                ve.PropertyName, ve.ErrorMessage);
+            //        }
+            //    }
+            //    throw;
+            //}
 
             return View(uSR_User);
         }
@@ -90,34 +110,51 @@ namespace Gilbert.Controllers.Users
             return View(uSR_User);
         }
 
-        // GET: User/Delete/5
-        public async Task<ActionResult> Delete(long? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            USR_User uSR_User = await db.USR_User.FindAsync(id);
-            if (uSR_User == null)
-            {
-                return HttpNotFound();
-            }
-            return View(uSR_User);
+
+        public ActionResult Login(string id = null)
+        {                 
+            ViewBag.Redirect = id;
+            return View();
         }
 
-        // POST: User/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(long id)
+
+        public ActionResult Login(string email, string password, string redirect = null)
         {
-            USR_User uSR_User = await db.USR_User.FindAsync(id);
-            db.USR_User.Remove(uSR_User);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                var f_password = Auxiliar.Auxiliar.GetMD5(password);
+                var data = db.USR_User.Where(s => s.Email.Equals(email) && s.Password.Equals(f_password)).ToList();
+                if (data.Count() > 0)
+                {
+                    //add session
+                    //Session["FullName"] = data.FirstOrDefault().FirstName + " " + data.FirstOrDefault().LastName;
+                    Session["Email"] = data.FirstOrDefault().Email;
+                    Session["idUser"] = data.FirstOrDefault().ID;
+
+                    if (!string.IsNullOrEmpty(redirect))
+                    {
+                        return RedirectToAction("Index","Job",new {id = redirect });
+                    }
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return View();
+        }
+
+        //Logout
+        public ActionResult Logout()
+        {
+            Session.Clear();//remove session
+            return RedirectToAction("Login");
         }
 
         protected override void Dispose(bool disposing)
         {
+
             if (disposing)
             {
                 db.Dispose();

@@ -19,11 +19,22 @@ namespace Gilbert
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
+            bundles.Add(new Bundle("~/bundles/bootstrap").Include(
+                      "~/Scripts/bootstrap.js",
+                      "~/Scripts/aos.js",
+                      "~/Scripts/glightbox.min.js",    
+                      "~/Scripts/isotope.pkgd.min.js",
+                      "~/Scripts/swiper-bundle.min.js",
+                      "~/Scripts/main.js"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.min.css",
+                      "~/Content/bootstrap-icons.css",
+                      "~/Content/boxicons.min.css",
+                      "~/Content/glightbox.min.css",
+                      "~/Content/swiper-bundle.min.css",
+                      "~/Content/style.css",
                       "~/Content/site.css"));
         }
     }
