@@ -14,7 +14,7 @@ namespace Gilbert.Models
     public partial class CR_AD_Header
     {
         [Required]
-        public string Details { get; set; }
+        public string Details { get; set; }        
     }
 
     public partial class JobsPostulate
@@ -41,4 +41,7 @@ namespace Gilbert.Models
         [Index("UQ_USR_User_Email",1, IsUnique = true)]
         public string Email { get; set; }
     }
+
+
+    
 }

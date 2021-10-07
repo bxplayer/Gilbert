@@ -510,6 +510,7 @@
       <End Role="USR_User" EntitySet="USR_User" />
       <End Role="USER_CR_Postulate" EntitySet="USER_CR_Postulate" />
     </AssociationSet>
+    <EntitySet Name="vw_CR_HeaderPostulate" EntityType="GilbertModel.vw_CR_HeaderPostulate" />
   </EntityContainer>
   <EntityType Name="USER_CR_Postulate">
     <Key>
@@ -545,4 +546,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="vw_CR_HeaderPostulate">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="IDUserCreator" />
+      <PropertyRef Name="CreationDate" />
+      <PropertyRef Name="StartDate" />
+      <PropertyRef Name="FinishDate" />
+      <PropertyRef Name="IDStatus" />
+      <PropertyRef Name="Unique_ID" />
+      <PropertyRef Name="IDCompany" />
+    </Key>
+    <Property Name="ID" Type="Int64" Nullable="false" />
+    <Property Name="IDUserCreator" Type="Int64" Nullable="false" />
+    <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FinishDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SDescrip" Type="String" MaxLength="120" FixedLength="false" Unicode="false" />
+    <Property Name="LDescrip" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="IDStatus" Type="Int32" Nullable="false" />
+    <Property Name="Unique_ID" Type="Guid" Nullable="false" />
+    <Property Name="Postulantes" Type="Int32" />
+    <Property Name="IDCompany" Type="Int64" Nullable="false" />
+  </EntityType>
 </Schema>

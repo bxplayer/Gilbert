@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Gilbert.Models.CR_AD_Header>
+﻿@model IEnumerable<Gilbert.Models.vw_CR_HeaderPostulate>
 
 @{
     ViewBag.Title = "Index";
@@ -32,7 +32,7 @@
                     @Html.DisplayNameFor(model => model.IDStatus)
                 </th> 
                 <th>
-                    Postulados
+                    @Html.DisplayNameFor(model => model.Postulantes)                    
                 </th>
                 
                 <th></th>
@@ -58,7 +58,7 @@
                         @Html.DisplayFor(modelItem => item.IDStatus)
                     </td>                                        
                     <td>
-                        90
+                        @Html.DisplayFor(modelItem => item.Postulantes)
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |

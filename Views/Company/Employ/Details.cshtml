@@ -1,0 +1,73 @@
+﻿@model Gilbert.Models.CR_AD_Header
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<!-- ======= Details Section ======= -->
+<section class="mt-5 portfolio-details">
+    <div class="container">
+
+        <div class="section-title">
+            <h2>Detalle del trabajo</h2>
+        </div>
+
+        <div class="row gy-4">
+
+            <div class="col-lg-12">
+                <div class="portfolio-info row">
+                    <h3>@Html.DisplayFor(model => model.SDescrip)</h3>
+                    <div class="col-lg-6">
+                        <ul>
+                            <li><strong>@Html.DisplayNameFor(model => model.CreationDate)</strong>: @Html.DisplayFor(model => model.CreationDate)</li>
+                            <li><strong>@Html.DisplayNameFor(model => model.StartDate)</strong>: @Html.DisplayFor(model => model.StartDate)</li>
+                            <li><strong>@Html.DisplayNameFor(model => model.FinishDate)</strong>: @Html.DisplayFor(model => model.FinishDate)</li>
+                            <li><strong>@Html.DisplayNameFor(model => model.CR_User.Email)</strong>: @Html.DisplayFor(model => model.CR_User.Email)</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <ul>
+                            <li><strong>@Html.DisplayNameFor(model => model.IDStatus)</strong>: @Html.DisplayFor(model => model.IDStatus)</li>
+                            <li><strong>@Html.DisplayNameFor(model => model.LDescrip)</strong>: @Html.DisplayFor(model => model.LDescrip)</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            @foreach (Gilbert.Models.CR_AD_Detail detail in Model.CR_AD_Detail)
+            {
+                <div class="col-lg-12">
+                    <div class="portfolio-info row">
+                        <h4>@detail.MD_Position.LDescrip - @detail.PositionDescript</h4>
+                        @foreach (Gilbert.Models.USER_CR_Postulate user_postulate in detail.USER_CR_Postulate)
+                        {
+                            Gilbert.Models.USR_CV_Header user_header = user_postulate.USR_User.USR_CV_Header.FirstOrDefault();
+
+                            <div class="col-lg-4 mb-4">
+                                <ul>
+                                    <li><h5>@user_postulate.USR_User.UserLastName @user_postulate.USR_User.UserName</h5></li>
+                                    <li><strong>Email</strong>: @user_postulate.USR_User.Email</li>
+                                    @if(user_header != null){
+                                        <li><strong>Street</strong>: @user_header.Street</li>
+                                    }
+
+                                </ul>
+                            </div>
+                        }
+
+                    </div>
+
+                </div>
+            }
+
+
+        </div>
+
+    </div>
+    @*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+
+</section><!-- End Portfolio Details -->
+

@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -19,10 +20,10 @@ namespace Gilbert.Controllers.Company
         private GilbertEntities db = new GilbertEntities();        
 
         // GET: Employ
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {            
-            var cR_AD_Header = db.CR_AD_Header.Include(c => c.CR_User);
-            return View(Auxiliar.ViewsPath.CompanyPath("Index"), await cR_AD_Header.ToListAsync());            
+           var vw_cR_HeaderPostulate = db.vw_CR_HeaderPostulate.Where(x => x.IDCompany == 1);
+           return View(Auxiliar.ViewsPath.CompanyPath("Index"), vw_cR_HeaderPostulate.ToList());            
         }
 
 
@@ -84,5 +85,24 @@ namespace Gilbert.Controllers.Company
             return View(Auxiliar.ViewsPath.CompanyPath("Create"), cR_AD_Header);
         }
 
+
+
+        public async Task<ActionResult> Details(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CR_AD_Header cR_AD_Header = await db.CR_AD_Header.FindAsync(id);
+            if (cR_AD_Header == null)
+            {
+                return HttpNotFound();
+            }            
+
+            return View(Auxiliar.ViewsPath.CompanyPath("Details"),cR_AD_Header);
+        }
+
     }
+
+
 }

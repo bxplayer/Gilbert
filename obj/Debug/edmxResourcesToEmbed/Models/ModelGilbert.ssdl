@@ -201,6 +201,31 @@
     <Property Name="Password" Type="varchar" MaxLength="80" Nullable="false" />
     <Property Name="IDStatus" Type="int" Nullable="false" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Gilbert.dbo.vw_CR_HeaderPostulate' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="vw_CR_HeaderPostulate">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="IDUserCreator" />
+      <PropertyRef Name="CreationDate" />
+      <PropertyRef Name="StartDate" />
+      <PropertyRef Name="FinishDate" />
+      <PropertyRef Name="IDStatus" />
+      <PropertyRef Name="Unique_ID" />
+      <PropertyRef Name="IDCompany" />
+    </Key>
+    <Property Name="ID" Type="bigint" Nullable="false" />
+    <Property Name="IDUserCreator" Type="bigint" Nullable="false" />
+    <Property Name="CreationDate" Type="datetime" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="FinishDate" Type="datetime" Nullable="false" />
+    <Property Name="SDescrip" Type="varchar" MaxLength="120" />
+    <Property Name="LDescrip" Type="varchar" MaxLength="500" />
+    <Property Name="IDStatus" Type="int" Nullable="false" />
+    <Property Name="Unique_ID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="IDCompany" Type="bigint" Nullable="false" />
+    <Property Name="Postulantes" Type="int" />
+  </EntityType>
   <Association Name="FK_CR_AD_Detail_CR_AD_Header">
     <End Role="CR_AD_Header" Type="Self.CR_AD_Header" Multiplicity="1" />
     <End Role="CR_AD_Detail" Type="Self.CR_AD_Detail" Multiplicity="*" />
@@ -436,6 +461,21 @@
     <EntitySet Name="USER_CV_WorkExperience" EntityType="Self.USER_CV_WorkExperience" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USR_CV_Header" EntityType="Self.USR_CV_Header" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USR_User" EntityType="Self.USR_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="vw_CR_HeaderPostulate" EntityType="Self.vw_CR_HeaderPostulate" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vw_CR_HeaderPostulate].[ID] AS [ID], 
+    [vw_CR_HeaderPostulate].[IDUserCreator] AS [IDUserCreator], 
+    [vw_CR_HeaderPostulate].[CreationDate] AS [CreationDate], 
+    [vw_CR_HeaderPostulate].[StartDate] AS [StartDate], 
+    [vw_CR_HeaderPostulate].[FinishDate] AS [FinishDate], 
+    [vw_CR_HeaderPostulate].[SDescrip] AS [SDescrip], 
+    [vw_CR_HeaderPostulate].[LDescrip] AS [LDescrip], 
+    [vw_CR_HeaderPostulate].[IDStatus] AS [IDStatus], 
+    [vw_CR_HeaderPostulate].[Unique_ID] AS [Unique_ID], 
+    [vw_CR_HeaderPostulate].[IDCompany] AS [IDCompany], 
+    [vw_CR_HeaderPostulate].[Postulantes] AS [Postulantes]
+    FROM [dbo].[vw_CR_HeaderPostulate] AS [vw_CR_HeaderPostulate]</DefiningQuery>
+    </EntitySet>
     <AssociationSet Name="FK_CR_AD_Detail_CR_AD_Header" Association="Self.FK_CR_AD_Detail_CR_AD_Header">
       <End Role="CR_AD_Header" EntitySet="CR_AD_Header" />
       <End Role="CR_AD_Detail" EntitySet="CR_AD_Detail" />
