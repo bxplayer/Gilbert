@@ -22,13 +22,27 @@
 
             <h1 class="logo"><a href="index.html">Gilbert</a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo"><img src="Images/img/logo.png" alt="" class="img-fluid"></a>-->
+            @*<a href="index.html" class="logo"><img src="Images/img/logo.png" alt="" class="img-fluid"></a>*@
 
             <nav id="navbar" class="navbar">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>                    
-                    <li><a class="getstarted scrollto" href="#about">Get Started</a></li>
+                    <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
+                    @if (Session["UserCR"] != null && (Boolean)Session["UserCR"])
+                    {
+                        <li>@Html.ActionLink("Employ", "Index", "Employ", null, new { @class = "nav-link scrollto" })</li>
+                    }
+
+                    @if ((Session["UserCR"] != null && (Boolean)Session["UserCR"]) || (Session["User"] != null && (Boolean)Session["User"]))
+                    {
+                        <li>@Html.ActionLink("Logout", "Logout", "User", null, new { @class = "nav-link scrollto" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Login", "Login", "User", null, new { @class = "nav-link scrollto" })</li>
+                        <li>@Html.ActionLink("Get Started", "Registration", "User", null, new { @class = "getstarted scrollto" })</li>
+                    }
+
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->

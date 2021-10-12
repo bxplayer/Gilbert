@@ -352,7 +352,7 @@
     <Content Include="Views\Company\Employ\_addDetail.cshtml" />
     <Content Include="Views\Job\Index.cshtml" />
     <Content Include="Views\Job\unknown.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Registration.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />

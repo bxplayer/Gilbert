@@ -51,7 +51,7 @@ namespace Gilbert.Controllers
         }
        
         [HttpPost]
-        public string Postulate(long id)
+        public long Postulate(long id)
         {
             try { 
             USER_CR_Postulate uSER_CR_Postulate = new USER_CR_Postulate();
@@ -76,7 +76,7 @@ namespace Gilbert.Controllers
                 throw;
             }
 
-            return "asd" + id;
+            return id;
         }
 
         

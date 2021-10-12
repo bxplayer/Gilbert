@@ -40,6 +40,8 @@ namespace Gilbert.Models
         [RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail nos es valido")]
         [Index("UQ_USR_User_Email",1, IsUnique = true)]
         public string Email { get; set; }
+
+        public Boolean isUser { get; set; }
     }
 
 

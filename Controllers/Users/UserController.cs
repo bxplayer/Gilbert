@@ -25,8 +25,11 @@ namespace Gilbert.Controllers.Users
         
 
         // GET: User/Create
-        public ActionResult Create()
+        public ActionResult Registration()
         {
+            //USR_User uSR_User = new USR_User();
+            //uSR_User.isUser = true;                
+            //return View(uSR_User);
             return View();
         }
 
@@ -35,7 +38,7 @@ namespace Gilbert.Controllers.Users
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Email,UserName,UserLastName,Telephone,Password")] USR_User uSR_User)
+        public async Task<ActionResult> Registration([Bind(Include = "ID,Email,UserName,UserLastName,Telephone,Password")] USR_User uSR_User)
         {
             //try
             //{
@@ -111,16 +114,15 @@ namespace Gilbert.Controllers.Users
         }
 
 
-        public ActionResult Login(string id = null)
+        public ActionResult Login()
         {                 
-            ViewBag.Redirect = id;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
 
-        public ActionResult Login(string email, string password, string redirect = null)
+        public ActionResult Login(string email, string password, string id = null)
         {
             if (ModelState.IsValid)
             {
@@ -129,17 +131,32 @@ namespace Gilbert.Controllers.Users
                 if (data.Count() > 0)
                 {
                     //add session
-                    //Session["FullName"] = data.FirstOrDefault().FirstName + " " + data.FirstOrDefault().LastName;
+                    Session["FullName"] = data.FirstOrDefault().UserName + " " + data.FirstOrDefault().UserLastName;
                     Session["Email"] = data.FirstOrDefault().Email;
                     Session["idUser"] = data.FirstOrDefault().ID;
+                    Session["User"] = true;
 
-                    if (!string.IsNullOrEmpty(redirect))
+                    if (!string.IsNullOrEmpty(id))
                     {
-                        return RedirectToAction("Index","Job",new {id = redirect });
+                        return RedirectToAction("Index","Job",new { id = id });
                     }
 
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index","Home");
                 }
+
+                var dataCR = db.CR_User.Where(s => s.Email.Equals(email) && s.Password.Equals(f_password)).ToList();
+                if (dataCR.Count() > 0)
+                {
+                    //add session
+                    Session["FullName"] = dataCR.FirstOrDefault().UserName + " " + dataCR.FirstOrDefault().UserLastName;
+                    Session["Email"] = dataCR.FirstOrDefault().Email;
+                    Session["idUser"] = dataCR.FirstOrDefault().ID;
+                    Session["IDCompany"] = dataCR.FirstOrDefault().IDCompany;
+                    Session["UserCR"] = true;
+
+                    return RedirectToAction("Index", "Employ");
+                }
+
             }
 
             return View();

@@ -11,9 +11,12 @@
             <h2>Listado puestos de trabajo</h2>                        
         </div>
 
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
+        <div class="float-end mb-2">
+            @Html.ActionLink("Create New", "Create", null, new { @class = "link-custom" })
+        </div>
+            
+            
+        
         <table class="table">
             <tr>                
                 <th>
@@ -61,9 +64,9 @@
                         @Html.DisplayFor(modelItem => item.Postulantes)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
                         @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.ID }) |*@
+                        @Html.ActionLink("Download QR", "Download", new { id = item.ID })
                     </td>
                     @{var qr = "/Images/QR/" + item.Unique_ID + ".png"; }
                     <td><img src=@qr width="50" /></td>

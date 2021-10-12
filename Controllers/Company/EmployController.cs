@@ -102,6 +102,21 @@ namespace Gilbert.Controllers.Company
             return View(Auxiliar.ViewsPath.CompanyPath("Details"),cR_AD_Header);
         }
 
+        public ActionResult Download(long? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CR_AD_Header cR_AD_Header = db.CR_AD_Header.Find(id);
+            if (cR_AD_Header == null)
+            {
+                return HttpNotFound();
+            }
+
+            return File(Server.MapPath("~/Images/QR/") + cR_AD_Header.Unique_ID + ".png", "image/png" , Auxiliar.Auxiliar.GenerateSlug(cR_AD_Header.SDescrip) + ".png");            
+        }
+
     }
 
 
