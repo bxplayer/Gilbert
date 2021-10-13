@@ -20,17 +20,22 @@
     <header id="header" class="fixed-top">
         <div class="container d-flex align-items-center justify-content-between">
 
-            <h1 class="logo"><a href="index.html">Gilbert</a></h1>
+            <h1 class="logo">@Html.ActionLink("Gilbert", "Index", "Home")</h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             @*<a href="index.html" class="logo"><img src="Images/img/logo.png" alt="" class="img-fluid"></a>*@
 
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#about">Sobre Nosotros</a></li>
+                    <li class="@((ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "Index") ? "active" : "")">@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link scrollto" })</li>
+                    <li class="@((ViewContext.RouteData.Values["Controller"].ToString() == "Home" && ViewContext.RouteData.Values["Action"].ToString() == "About") ? "active" : "")">@Html.ActionLink("Sobre Nosotros", "About", "Home", null, new { @class = "nav-link scrollto" })</li>
                     @if (Session["UserCR"] != null && (Boolean)Session["UserCR"])
                     {
-                        <li>@Html.ActionLink("Employ", "Index", "Employ", null, new { @class = "nav-link scrollto" })</li>
+                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Employ" ? "active" : "")">@Html.ActionLink("Employ", "Index", "Employ", null, new { @class = "nav-link scrollto" })</li>
+                    }
+
+                    @if ((Session["User"] != null && (Boolean)Session["User"]))
+                    {
+                        <li>@Html.ActionLink("Perfil", "Profile", "User", null, new { @class = "nav-link scrollto" })</li>
                     }
 
                     @if ((Session["UserCR"] != null && (Boolean)Session["UserCR"]) || (Session["User"] != null && (Boolean)Session["User"]))
@@ -39,8 +44,8 @@
                     }
                     else
                     {
-                        <li>@Html.ActionLink("Login", "Login", "User", null, new { @class = "nav-link scrollto" })</li>
-                        <li>@Html.ActionLink("Get Started", "Registration", "User", null, new { @class = "getstarted scrollto" })</li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Login" ? "active" : "")">@Html.ActionLink("Login", "Login", "User", null, new { @class = "nav-link scrollto" })</li>
+                        <li class="@(ViewContext.RouteData.Values["Action"].ToString() == "Registration" ? "active" : "")">@Html.ActionLink("Get Started", "Registration", "User", null, new { @class = "getstarted scrollto" })</li>
                     }
 
                 </ul>

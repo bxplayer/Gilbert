@@ -137,6 +137,7 @@
     <Compile Include="Auxiliar\Auxiliar.cs" />
     <Compile Include="Controllers\Company\EmployController.cs" />
     <Compile Include="Controllers\CR_HeaderController.cs" />
+    <Compile Include="Controllers\CompanyCustomController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -357,6 +358,7 @@
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Company\Employ\Details.cshtml" />
+    <Content Include="Views\User\Profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

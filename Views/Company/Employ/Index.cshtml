@@ -4,21 +4,33 @@
     ViewBag.Title = "Index";
 }
 
-<section class="mt-5">
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+        <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Listado puestos de trabajo</li>
+        </ol>
+
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section class="inner-page">
     <div class="container">
 
         <div class="section-title">
-            <h2>Listado puestos de trabajo</h2>                        
+            <h2>Listado puestos de trabajo</h2>
         </div>
 
         <div class="float-end mb-2">
             @Html.ActionLink("Create New", "Create", null, new { @class = "link-custom" })
         </div>
-            
-            
-        
+
+
+
         <table class="table">
-            <tr>                
+            <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.StartDate)
                 </th>
@@ -29,22 +41,22 @@
                     @Html.DisplayNameFor(model => model.SDescrip)
                 </th>
                 @*<th>
-                    @Html.DisplayNameFor(model => model.LDescrip)
-                </th>*@
+                        @Html.DisplayNameFor(model => model.LDescrip)
+                    </th>*@
                 <th>
                     @Html.DisplayNameFor(model => model.IDStatus)
-                </th> 
-                <th>
-                    @Html.DisplayNameFor(model => model.Postulantes)                    
                 </th>
-                
+                <th>
+                    @Html.DisplayNameFor(model => model.Postulantes)
+                </th>
+
                 <th></th>
                 <th></th>
             </tr>
 
             @foreach (var item in Model)
             {
-                <tr>                    
+                <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.StartDate)
                     </td>
@@ -55,11 +67,11 @@
                         @Html.DisplayFor(modelItem => item.SDescrip)
                     </td>
                     @*<td>
-                        @Html.DisplayFor(modelItem => item.LDescrip)
-                    </td>*@
+                            @Html.DisplayFor(modelItem => item.LDescrip)
+                        </td>*@
                     <td>
                         @Html.DisplayFor(modelItem => item.IDStatus)
-                    </td>                                        
+                    </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Postulantes)
                     </td>

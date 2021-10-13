@@ -133,7 +133,7 @@ namespace Gilbert.Controllers.Users
                     //add session
                     Session["FullName"] = data.FirstOrDefault().UserName + " " + data.FirstOrDefault().UserLastName;
                     Session["Email"] = data.FirstOrDefault().Email;
-                    Session["idUser"] = data.FirstOrDefault().ID;
+                    Session["IDUser"] = data.FirstOrDefault().ID;
                     Session["User"] = true;
 
                     if (!string.IsNullOrEmpty(id))
@@ -150,7 +150,7 @@ namespace Gilbert.Controllers.Users
                     //add session
                     Session["FullName"] = dataCR.FirstOrDefault().UserName + " " + dataCR.FirstOrDefault().UserLastName;
                     Session["Email"] = dataCR.FirstOrDefault().Email;
-                    Session["idUser"] = dataCR.FirstOrDefault().ID;
+                    Session["IDUser"] = dataCR.FirstOrDefault().ID;
                     Session["IDCompany"] = dataCR.FirstOrDefault().IDCompany;
                     Session["UserCR"] = true;
 
@@ -167,6 +167,12 @@ namespace Gilbert.Controllers.Users
         {
             Session.Clear();//remove session
             return RedirectToAction("Login");
+        }
+
+
+        public ActionResult Profile()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

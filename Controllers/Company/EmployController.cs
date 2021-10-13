@@ -15,14 +15,15 @@ using System.Web.Mvc;
 
 namespace Gilbert.Controllers.Company
 {
-    public class EmployController : Controller
+    public class EmployController : CompanyCustomController
     {
         private GilbertEntities db = new GilbertEntities();        
 
         // GET: Employ
         public ActionResult Index()
-        {            
-           var vw_cR_HeaderPostulate = db.vw_CR_HeaderPostulate.Where(x => x.IDCompany == 1);
+        {
+           long company_id = (long)Session["IDCompany"];
+           var vw_cR_HeaderPostulate = db.vw_CR_HeaderPostulate.Where(x => x.IDCompany == company_id).OrderByDescending(x => x.ID);
            return View(Auxiliar.ViewsPath.CompanyPath("Index"), vw_cR_HeaderPostulate.ToList());            
         }
 
@@ -40,6 +41,7 @@ namespace Gilbert.Controllers.Company
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "StartDate,FinishDate,SDescrip,LDescrip,Details")] CR_AD_Header cR_AD_Header)
         {
+            long user_id = (long)Session["IDUser"];
             if (ModelState.IsValid)
             {
                 DateTime create_at = DateTime.Now;
@@ -58,7 +60,7 @@ namespace Gilbert.Controllers.Company
                                 
                 cR_AD_Header.CreationDate = create_at;
                 /*Cambiar*/
-                cR_AD_Header.IDUserCreator = 1;
+                cR_AD_Header.IDUserCreator = user_id;
                 cR_AD_Header.IDStatus = 1;
 
                 cR_AD_Header.Unique_ID = Guid.NewGuid();

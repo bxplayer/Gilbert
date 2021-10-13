@@ -4,111 +4,133 @@
     ViewBag.Title = "Create";
 }
 
-
-
-<section id="root" class="mt-5">
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
     <div class="container">
-        <div class="section-title">
-            <h2>Crear Trabajo</h2>
-        </div>
 
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-
-            <div class="form-horizontal">
-
-
-
-
-                <h4>CR_AD_Header</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.FinishDate, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.FinishDate, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.FinishDate, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.SDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.SDescrip, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.SDescrip, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.LDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.LDescrip, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.LDescrip, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-                <input type="hidden" name="Details" id="Details" v-model="addInHidden" />
-
-
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-            </div>
-
-
-        }
-        @Html.Partial("~/Views/Company/Employ/_addDetail.cshtml")
-
-
-
-        <table class="table table-bordered" v-show="details_list.length">
-            <thead>
-                <tr>
-                    <th>Position</th>
-                    <th>MinAge</th>
-                    <th>MaxAge</th>
-                    <th>IDEducation</th>
-                    <th>IDExperience</th>
-                    <th>Qty</th>
-                    <th>PositionDescript</th>
-                    <th>TaskDescrip</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(item, index) in details_list">
-                    <td>{{ item.IDPosition }}</td>
-                    <td>{{ item.MinAge }}</td>
-                    <td>{{ item.MaxAge }}</td>
-                    <td>{{ item.IDEducation }}</td>
-                    <td>{{ item.IDExperience }}</td>
-                    <td>{{ item.Qty }}</td>
-                    <td>{{ item.PositionDescript }}</td>
-                    <td>{{ item.TaskDescrip }}</td>
-                    <td><button v-on:click="deleteDetail(index)">---</button></td>
-                </tr>
-            </tbody>
-        </table>
+        <ol>
+            <li><a href="index.html">Employ</a></li>
+            <li>Crear publicación</li>
+        </ol>
 
     </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="root" class="inner-page p-0">
+    <div class="container">
+        @*<div class="section-title">
+            <h2>Crear Trabajo</h2>
+        </div>*@
+
+
+
+
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div class="portfolio-details">
+
+            <div class="col-lg-12">
+                <div class="portfolio-info">
+                    <h3>Crear publicación</h3>
+
+
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <div class="row">
+                            <div class="form-group col-lg-6 my-2">
+                                @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date"} })
+                                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-6 my-2">
+                                @Html.LabelFor(model => model.FinishDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.FinishDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                    @Html.ValidationMessageFor(model => model.FinishDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-12 my-2">
+                                @Html.LabelFor(model => model.SDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.SDescrip, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SDescrip, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-lg-12 my-2">
+                                @Html.LabelFor(model => model.LDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-12">
+                                    @Html.EditorFor(model => model.LDescrip, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LDescrip, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="Details" id="Details" v-model="addInHidden" />
+
+                            <div class="form-group my-2">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Create" class="button-custom" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+                    <div class="row">
+                        @Html.Partial("~/Views/Company/Employ/_addDetail.cshtml")
+                    </div>
+
+                    <div class="row">
+                        <table class="table table-bordered" v-show="details_list.length">
+                            <thead>
+                                <tr>
+                                    <th>Position</th>
+                                    <th>MinAge</th>
+                                    <th>MaxAge</th>
+                                    <th>IDEducation</th>
+                                    <th>IDExperience</th>
+                                    <th>Qty</th>
+                                    <th>PositionDescript</th>
+                                    <th>TaskDescrip</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="(item, index) in details_list">
+                                    <td>{{ item.IDPosition }}</td>
+                                    <td>{{ item.MinAge }}</td>
+                                    <td>{{ item.MaxAge }}</td>
+                                    <td>{{ item.IDEducation }}</td>
+                                    <td>{{ item.IDExperience }}</td>
+                                    <td>{{ item.Qty }}</td>
+                                    <td>{{ item.PositionDescript }}</td>
+                                    <td>{{ item.TaskDescrip }}</td>
+                                    <td><button v-on:click="deleteDetail(index)" class="button-custom-delete mx-auto"><i class="bx bx-trash"></i></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+                </div>
+
+
+           
+        </div>
+
+
+
+        </div>
 </section>
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -120,43 +142,43 @@
         IDPosition: 1,
         MinAge: 18,
         MaxAge: 65,
-        IDEducation: 1,           
-        IDExperience: 1,            
-        Qty: 1,            
-        PositionDescript: '',            
-        TaskDescrip: '',        
+        IDEducation: 1,
+        IDExperience: 1,
+        Qty: 1,
+        PositionDescript: '',
+        TaskDescrip: '',
     }
 
     const detail_validation = {
-        IDPosition: {    
+        IDPosition: {
             required: true,
             message: 'Debe seleccionar'
         },
-        MinAge: {            
+        MinAge: {
             required: true,
             message: 'Debe seleccionar'
         },
-        MaxAge: {            
+        MaxAge: {
             required: false,
             message: 'Debe seleccionar'
         },
-        IDEducation: {            
+        IDEducation: {
             required: false,
             message: 'Debe seleccionar'
         },
-        IDExperience: {            
+        IDExperience: {
             required: false,
             message: 'Debe seleccionar'
         },
-        Qty: {            
+        Qty: {
             required: false,
             message: 'Debe seleccionar'
         },
-        PositionDescript: {            
+        PositionDescript: {
             required: false,
             message: 'Debe seleccionar'
         },
-        TaskDescrip: {            
+        TaskDescrip: {
             required: false,
             message: 'Debe seleccionar'
         }
@@ -167,20 +189,20 @@
         el: '#root',
         data: {
             mensaje: 'Hola Vue!',
-            details_list: [],  
+            details_list: [],
             detail: detail,
             detail_validation: detail_validation
         },
         methods: {
-            addDetail: function () { 
+            addDetail: function () {
                 this.validation()
                 //this.details_list.push(JSON.parse(JSON.stringify(this.detail)));
-                this.details_list.push({ ...this.detail });                     
-            },     
-            deleteDetail: function (index) {                
-                this.details_list.splice(index, 1);                
+                this.details_list.push({ ...this.detail });
             },
-            validation: function () {               
+            deleteDetail: function (index) {
+                this.details_list.splice(index, 1);
+            },
+            validation: function () {
                 return true;
             }
         },
