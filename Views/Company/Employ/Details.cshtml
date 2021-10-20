@@ -5,7 +5,7 @@
 }
 
 <!-- ======= Details Section ======= -->
-<section class="mt-5 portfolio-details">
+<section class="mt-5 portfolio-details" id="detail">
     <div class="container">
 
         <div class="section-title">
@@ -37,7 +37,7 @@
             @foreach (Gilbert.Models.CR_AD_Detail detail in Model.CR_AD_Detail)
             {
                 <div class="col-lg-12">
-                    <div class="portfolio-info row">
+                    <div class="portfolio-info row ">
                         <h4>@detail.MD_Position.LDescrip - @detail.PositionDescript</h4>
                         @foreach (Gilbert.Models.USER_CR_Postulate user_postulate in detail.USER_CR_Postulate)
                         {
@@ -46,12 +46,19 @@
                             <div class="col-lg-4 mb-4">
                                 <ul>
                                     <li><h5>@user_postulate.USR_User.UserLastName @user_postulate.USR_User.UserName</h5></li>
-                                    <li><strong>Email</strong>: @user_postulate.USR_User.Email</li>
-                                    @if(user_header != null){
-                                        <li><strong>Street</strong>: @user_header.Street</li>
+                                    <li><b>Email :</b> @user_postulate.USR_User.Email</li>
+                                    <li><b>Telephone :</b>@user_postulate.USR_User.Telephone</li>
+                                    @if (user_header != null)
+                                    {
+                                        <li><b>Street :</b>@user_header.Street</li>
+                                        <li><b>State :</b>@user_header.MD_State.LDescrip</li>
+                                        <li><b>Nationality :</b>@user_header.MD_State.MD_Country.LDescrip</li>
                                     }
-
                                 </ul>
+                                <div>
+                                    <button v-on:click="view(@user_postulate.IDUser)" class="btn btn-outline-info  btn_cv"><i class='bx bxs-id-card'></i> Ver CV</button>
+                                </div>
+                                
                             </div>
                         }
 
@@ -64,10 +71,117 @@
         </div>
 
     </div>
+
+    <div v-if="showModal">
+        <transition name="modal">
+            <div class="modal-mask">
+                <div class="modal-wrapper">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" v-text="user.UserLastName +' '+ user.UserName"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" v-on:click="showModal = false">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <ul>
+                                    <li><b>Email :</b>{{user.Email}}</li>
+                                    <li><b>Telephone :</b>{{user.Telephone}}</li>
+                                    <li><b>Street :</b>{{user.Street}}</li>
+                                    <li><b>StreetNumber :</b>{{user.StreetNumber}}</li>
+                                    <li><b>PostCode :</b>{{user.PostCode}}</li>
+                                    <li><b>State :</b>{{user.State}}</li>
+                                    <li><b>Nationality :</b>{{user.Nationality}}</li>
+                                    <li><b>Birthdate :</b>{{user.Birthdate | moment }}</li>
+                                    <li><b>Age :</b>{{user.Birthdate | edad }}</li>
+                                </ul>
+
+                                <table class="table" v-if="user.ViewUserEducation.length > 0">
+                                    <thead>
+                                        <tr>
+                                            <th>StartDate</th>
+                                            <th>FinishDate</th>
+                                            <th>EducationSegment</th>
+                                            <th>EducationLevel</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(item, index) in user.ViewUserEducation">
+                                            <td>{{item.StartDate | moment}}</td>
+                                            <td>{{item.FinishDate | moment}}</td>
+                                            <td>{{item.EducationSegment}}</td>
+                                            <td>{{item.EducationLevel}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="table" v-if="user.ViewUserWorkExperience.length > 0">
+                                    <thead>
+                                        <tr>
+                                            <th>StartDate</th>
+                                            <th>FinishDate</th>
+                                            <th>Position</th>
+                                            <th>PositionDescrip</th>
+                                            <th>TaskDescrip</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr v-for="(item, index) in user.ViewUserWorkExperience">
+                                            <td>{{item.StartDate | moment}}</td>
+                                            <td>{{item.FinishDate | moment}}</td>
+                                            <td>{{item.Position}}</td>
+                                            <td>{{item.PositionDescrip}}</td>
+                                            <td>{{item.TaskDescrip}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-sm btn-secondary" v-on:click="showModal = false">Close</button>                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </transition>
+    </div>
+    
+
     @*<p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>*@
 
 </section><!-- End Portfolio Details -->
 
+<script type="text/javascript">
+
+
+    let app = new Vue({
+        el: '#detail',
+        data: {
+            showModal: false,
+            user: {}
+        },
+        methods: {
+            view: function (id) {
+                axios.post('/User/ViewCV', { "UserID": JSON.stringify(id) })
+                    .then(response => {                                                
+                        if (response.data.success) {
+                            this.user = response.data.response;                              
+                            this.showModal = true;
+                        }
+                    })
+            }
+        },
+        filters: {
+            moment: function (date) {
+                return moment(date).format('YYYY-MM-DD');
+            },
+            edad: function (date) {
+                return moment().diff(date,'years',false);
+            }
+        }
+    })
+</script>

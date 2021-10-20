@@ -1,0 +1,128 @@
+﻿@model Gilbert.Models.USER_CV_WorkExperience
+
+
+    
+<div id="experience">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @v_model = "exp.StartDate", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FinishDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FinishDate, new { htmlAttributes = new { @class = "form-control", @v_model = "exp.FinishDate", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.FinishDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDPosition, "IDPosition", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IDPosition", null, htmlAttributes: new { @class = "form-control", @v_model = "exp.IDPosition" })
+            @Html.ValidationMessageFor(model => model.IDPosition, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PositionDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PositionDescrip, new { htmlAttributes = new { @class = "form-control", @v_model = "exp.PositionDescrip" } })
+            @Html.ValidationMessageFor(model => model.PositionDescrip, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TaskDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TaskDescrip, new { htmlAttributes = new { @class = "form-control", @v_model = "exp.TaskDescrip" } })
+            @Html.ValidationMessageFor(model => model.TaskDescrip, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button v-on:click="add">Add</button>            
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered" v-show="list_exp.length">
+            <thead>
+                <tr>
+                    <th>StartDate</th>
+                    <th>FinishDate</th>
+                    <th>PositionName</th>
+                    <th>PositionDescrip</th>
+                    <th>TaskDescrip</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in list_exp">
+                    <td>{{ item.StartDate | moment }}</td>
+                    <td>{{ item.FinishDate | moment }}</td>
+                    <td>{{ item.PositionName }}</td>
+                    <td>{{ item.PositionDescrip }}</td>
+                    <td>{{ item.TaskDescrip }}</td>
+                    <td><button v-on:click="deleteDetail(index)" class="button-custom-delete mx-auto"><i class="bx bx-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+    
+
+
+<script type="text/javascript">
+
+    const exp = {
+        StartDate: moment().subtract(10, 'days').format('YYYY-MM-DD'),
+        FinishDate: moment().format('YYYY-MM-DD'),
+        IDPosition: 1,     
+        PositionName:'',
+        PositionDescrip: '',                        
+        TaskDescrip: '',
+    }
+
+
+
+    let app = new Vue({
+        el: '#experience',
+        data: {
+            exp: exp,
+            list_exp : []
+        },
+        mounted: function () {
+            
+            axios.get('/User/getExperience')
+                .then(response => {                      
+                    if (response.data.success) {
+                        this.list_exp = response.data.response;                    
+                    }
+                })
+        },
+        methods: {
+            add: function () {
+                axios.post('/User/addExperience', { "exp": JSON.stringify(this.exp) })
+                    .then(response => {                        
+                        if (response.data.success) {
+                            this.list_exp.push({ ...response.data.response });
+                            this.exp = exp;
+                        }                        
+                })
+            }
+        },
+        filters: {
+            moment: function (date) {
+                return moment(date).format('YYYY-MM-DD');
+            }
+        }
+    })
+</script>

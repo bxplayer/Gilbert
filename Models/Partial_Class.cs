@@ -11,10 +11,31 @@ namespace Gilbert.Models
     {
     }
 
+    public class Parser_CR_AD_Education
+    {
+        
+        public DateTime StartDate { get; set; }
+        public DateTime FinishDate { get; set; }
+        public string EducationSegment { get; set; }
+        public string EducationLevel { get; set; }
+        public string EducationStatus { get; set; }
+        public string PlaceDescrip { get; set; }
+    }
+
+
+    public class Parser_CR_AD_Header
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime FinishDate { get; set; }
+        public string TaskDescrip { get; set; }
+        public string PositionDescrip { get; set; }
+        public string PositionName { get; set; }
+    }
     public partial class CR_AD_Header
     {
         [Required]
-        public string Details { get; set; }        
+        public string Details { get; set; }
+        
     }
 
     public partial class JobsPostulate

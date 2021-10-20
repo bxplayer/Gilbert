@@ -1,0 +1,47 @@
+﻿@model Gilbert.Models.USER_CV_WorkExperience
+
+@{
+    ViewBag.Title = "CV";
+}
+
+
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+        <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Perfil</li>
+        </ol>
+
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section class="inner-page">
+    <div class="container">
+
+        <div class="section-title pb-0">
+            <h2>Perfil</h2>
+        </div>
+
+
+
+        <div class="portfolio-details  pt-0">
+
+
+            @Html.Partial("~/Views/User/_addExperience.cshtml")
+
+
+            @Html.Partial("~/Views/User/_addEducation.cshtml")
+
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+

@@ -1,0 +1,138 @@
+﻿@model Gilbert.Models.USER_CV_Education
+
+
+<div id="education">
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @v_model = "edu.StartDate", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.FinishDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FinishDate, new { htmlAttributes = new { @class = "form-control", @v_model = "edu.FinishDate", @type = "date" } })
+            @Html.ValidationMessageFor(model => model.FinishDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDEducationSegment, "IDEducationSegment", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IDEducationSegment", null, htmlAttributes: new { @class = "form-control", @v_model = "edu.IDEducationSegment" })
+            @Html.ValidationMessageFor(model => model.IDEducationSegment, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDEducationLevel, "IDEducationLevel", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IDEducationLevel", null, htmlAttributes: new { @class = "form-control", @v_model = "edu.IDEducationLevel" })
+            @Html.ValidationMessageFor(model => model.IDEducationLevel, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.IDEducationStatus, "IDEducationStatus", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("IDEducationStatus", null, htmlAttributes: new { @class = "form-control", @v_model = "edu.IDEducationStatus" })
+            @Html.ValidationMessageFor(model => model.IDEducationStatus, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.PlaceDescrip, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PlaceDescrip, new { htmlAttributes = new { @class = "form-control", @v_model = "edu.PlaceDescrip" } })
+            @Html.ValidationMessageFor(model => model.PlaceDescrip, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button v-on:click="add">Add</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <table class="table table-bordered" v-show="list_edu.length">
+            <thead>
+                <tr>
+                    <th>StartDate</th>
+                    <th>FinishDate</th>
+                    <th>EducationSegment</th>
+                    <th>EducationLevel</th>
+                    <th>EducationStatus</th>
+                    <th>PlaceDescrip</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in list_edu">
+                    <td>{{ item.StartDate | moment }}</td>
+                    <td>{{ item.FinishDate | moment }}</td>
+                    <td>{{ item.EducationSegment }}</td>
+                    <td>{{ item.EducationLevel }}</td>
+                    <td>{{ item.EducationStatus }}</td>
+                    <td>{{ item.PlaceDescrip }}</td>
+                    <td><button v-on:click="deleteDetail(index)" class="button-custom-delete mx-auto"><i class="bx bx-trash"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    
+    const edu = {
+        StartDate: moment().subtract(10, 'days').format('YYYY-MM-DD'),
+        FinishDate: moment().format('YYYY-MM-DD'),
+        IDEducationSegment: 1,
+        IDEducationLevel: 1,
+        IDEducationStatus: 1,
+        PlaceDescrip: '',
+        EducationSegment: 1,
+        EducationLevel: 1,
+        EducationStatus: 1,
+    }
+
+
+    let app_edu = new Vue({
+        el: '#education',
+        data: {
+            edu: edu,
+            list_edu : []
+        },
+        mounted: function () {
+
+            axios.get('/User/getEducation')
+                .then(response => {
+                    if (response.data.success) {
+                        this.list_edu = response.data.response;
+                    }
+                })
+        },
+        methods: {
+            add: function () {
+                axios.post('/User/addEducation', { "edu": JSON.stringify(this.edu) })
+                    .then(response => {
+                        if (response.data.success) {
+                            this.list_edu.push({ ...response.data.response });
+                            this.edu = edu;
+                        }
+                })
+            }
+        },
+        filters: {
+            moment: function (date) {
+                return moment(date).format('YYYY-MM-DD');
+            }
+        }
+    })
+</script>

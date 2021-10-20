@@ -32,12 +32,19 @@ namespace Gilbert.Controllers
                 return View(Auxiliar.ViewsPath.JobPath("unknown"));
             }
 
-            USR_User uSR_User = db.USR_User.Where(x => x.ID == IDTEST).FirstOrDefault();
-            USR_CV_Header uSR_CV_Header = db.USR_CV_Header.Where(x => x.IDUser == IDTEST).FirstOrDefault();
+            long idUser = 0;
+            if (Session["IDUser"] != null)
+            {
+                idUser = (long)Session["IDUser"];
+            }
+            
+
+            USR_User uSR_User = db.USR_User.Where(x => x.ID == idUser).FirstOrDefault();
+            USR_CV_Header uSR_CV_Header = db.USR_CV_Header.Where(x => x.IDUser == idUser).FirstOrDefault();
 
             List<long> pos = cR_AD_Header.CR_AD_Detail.Select(x => x.ID).ToList();
 
-            List<long> uSER_CR_Postulate = db.USER_CR_Postulate.Where(x => x.IDUser == IDTEST && pos.Contains(x.IDCRADDetail)).Select(x => x.IDCRADDetail).ToList();
+            List<long> uSER_CR_Postulate = db.USER_CR_Postulate.Where(x => x.IDUser == idUser && pos.Contains(x.IDCRADDetail)).Select(x => x.IDCRADDetail).ToList();
             
 
             JobsPostulate jobsPostulate = new JobsPostulate();
@@ -53,10 +60,16 @@ namespace Gilbert.Controllers
         [HttpPost]
         public long Postulate(long id)
         {
-            try { 
-            USER_CR_Postulate uSER_CR_Postulate = new USER_CR_Postulate();
+            try {
+                long idUser = 0;
+                if (Session["IDUser"] != null)
+                {
+                    idUser = (long)Session["IDUser"];
+                }
+
+                USER_CR_Postulate uSER_CR_Postulate = new USER_CR_Postulate();
             uSER_CR_Postulate.IDCRADDetail = (long)id;
-            uSER_CR_Postulate.IDUser = IDTEST;
+            uSER_CR_Postulate.IDUser = idUser;
             db.USER_CR_Postulate.Add(uSER_CR_Postulate);
             db.SaveChanges();
 

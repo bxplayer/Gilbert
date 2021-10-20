@@ -30,61 +30,64 @@
 
 
         <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.StartDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FinishDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.SDescrip)
-                </th>
-                @*<th>
-                        @Html.DisplayNameFor(model => model.LDescrip)
-                    </th>*@
-                <th>
-                    @Html.DisplayNameFor(model => model.IDStatus)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Postulantes)
-                </th>
-
-                <th></th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FinishDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.SDescrip)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.LDescrip)
-                        </td>*@
-                    <td>
-                        @Html.DisplayFor(modelItem => item.IDStatus)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Postulantes)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                        @*@Html.ActionLink("Delete", "Delete", new { id = item.ID }) |*@
-                        @Html.ActionLink("Download QR", "Download", new { id = item.ID })
-                    </td>
-                    @{var qr = "/Images/QR/" + item.Unique_ID + ".png"; }
-                    <td><img src=@qr width="50" /></td>
-                </tr>
-            }
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FinishDate)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.SDescrip)
+                    </th>
+                    @*<th>
+                @Html.DisplayNameFor(model => model.LDescrip)
+            </th>*@
+                    <th>
+                        @Html.DisplayNameFor(model => model.IDStatus)
+                    </th>
+                    <th class="text-end">
+                        @Html.DisplayNameFor(model => model.Postulantes)
+                    </th>
 
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr  class="align-middle">
+                        <td>
+                            @Html.Raw(item.StartDate.ToString("yyyy-MM-dd"))
+                        </td>
+                        <td>
+                            @Html.Raw(item.FinishDate.ToString("yyyy-MM-dd"))
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SDescrip)
+                        </td>
+                        @*<td>
+                    @Html.DisplayFor(modelItem => item.LDescrip)
+                </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IDStatus)
+                        </td>
+                        <td class="text-end">
+                            @Html.DisplayFor(modelItem => item.Postulantes)
+                        </td>
+                        <td class="text-end">
+                            <div class="btn-group" role="group">
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }, new { @class = "btn btn-outline-custom btn-sm" })
+                                @Html.ActionLink("Download QR", "Download", new { id = item.ID }, new { @class = "btn btn-outline-custom btn-sm" })
+                            </div>                                
+                        </td>
+                        @{var qr = "/Images/QR/" + item.Unique_ID + ".png"; }
+                        <td class="text-end"><img src=@qr width="50" /></td>
+                    </tr>
+                }
+            </tbody>
         </table>
     </div>
 </section>

@@ -9,114 +9,118 @@ using System.Web;
 using System.Web.Mvc;
 using Gilbert.Models;
 
-namespace Gilbert.Controllers
+namespace Gilbert.Views
 {
-    public class CR_HeaderController : Controller
+    public class USR_CV_HeaderController : Controller
     {
         private GilbertEntities db = new GilbertEntities();
 
-        // GET: CR_Header
+        // GET: USR_CV_Header
         public async Task<ActionResult> Index()
         {
-            var cR_AD_Header = db.CR_AD_Header.Include(c => c.CR_User);
-            return View(await cR_AD_Header.ToListAsync());
+            var uSR_CV_Header = db.USR_CV_Header.Include(u => u.MD_State).Include(u => u.USR_User);
+            return View(await uSR_CV_Header.ToListAsync());
         }
 
-        // GET: CR_Header/Details/5
+        // GET: USR_CV_Header/Details/5
         public async Task<ActionResult> Details(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CR_AD_Header cR_AD_Header = await db.CR_AD_Header.FindAsync(id);
-            if (cR_AD_Header == null)
+            USR_CV_Header uSR_CV_Header = await db.USR_CV_Header.FindAsync(id);
+            if (uSR_CV_Header == null)
             {
                 return HttpNotFound();
             }
-            return View(cR_AD_Header);
+            return View(uSR_CV_Header);
         }
 
-        // GET: CR_Header/Create
+        // GET: USR_CV_Header/Create
         public ActionResult Create()
         {
-            ViewBag.IDUserCreator = new SelectList(db.CR_User, "ID", "Email");
+            ViewBag.IDState = new SelectList(db.MD_State, "ID", "SDescrip");
+            ViewBag.IDUser = new SelectList(db.USR_User, "ID", "Email");
             return View();
         }
 
-        // POST: CR_Header/Create
+        // POST: USR_CV_Header/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,IDUserCreator,CreationDate,StartDate,FinishDate,SDescrip,LDescrip,IDStatus")] CR_AD_Header cR_AD_Header)
+        public async Task<ActionResult> Create([Bind(Include = "ID,IDUser,Street,StreetNumber,PostCode,IDState,IDNationality,Birthdate,Age,IDStatus")] USR_CV_Header uSR_CV_Header)
         {
             if (ModelState.IsValid)
             {
-                db.CR_AD_Header.Add(cR_AD_Header);
+                db.USR_CV_Header.Add(uSR_CV_Header);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IDUserCreator = new SelectList(db.CR_User, "ID", "Email", cR_AD_Header.IDUserCreator);
-            return View(cR_AD_Header);
+            ViewBag.IDState = new SelectList(db.MD_State, "ID", "SDescrip", uSR_CV_Header.IDState);
+            ViewBag.IDUser = new SelectList(db.USR_User, "ID", "Email", uSR_CV_Header.IDUser);
+            return View(uSR_CV_Header);
         }
 
-        // GET: CR_Header/Edit/5
+        // GET: USR_CV_Header/Edit/5
         public async Task<ActionResult> Edit(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CR_AD_Header cR_AD_Header = await db.CR_AD_Header.FindAsync(id);
-            if (cR_AD_Header == null)
+            USR_CV_Header uSR_CV_Header = await db.USR_CV_Header.FindAsync(id);
+            if (uSR_CV_Header == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IDUserCreator = new SelectList(db.CR_User, "ID", "Email", cR_AD_Header.IDUserCreator);
-            return View(cR_AD_Header);
+            ViewBag.IDState = new SelectList(db.MD_State, "ID", "SDescrip", uSR_CV_Header.IDState);
+            ViewBag.IDUser = new SelectList(db.USR_User, "ID", "Email", uSR_CV_Header.IDUser);
+            return View(uSR_CV_Header);
         }
 
-        // POST: CR_Header/Edit/5
+        // POST: USR_CV_Header/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,IDUserCreator,CreationDate,StartDate,FinishDate,SDescrip,LDescrip,IDStatus")] CR_AD_Header cR_AD_Header)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,IDUser,Street,StreetNumber,PostCode,IDState,IDNationality,Birthdate,Age,IDStatus")] USR_CV_Header uSR_CV_Header)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cR_AD_Header).State = EntityState.Modified;
+                db.Entry(uSR_CV_Header).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.IDUserCreator = new SelectList(db.CR_User, "ID", "Email", cR_AD_Header.IDUserCreator);
-            return View(cR_AD_Header);
+            ViewBag.IDState = new SelectList(db.MD_State, "ID", "SDescrip", uSR_CV_Header.IDState);
+            ViewBag.IDUser = new SelectList(db.USR_User, "ID", "Email", uSR_CV_Header.IDUser);
+            return View(uSR_CV_Header);
         }
 
-        // GET: CR_Header/Delete/5
+        // GET: USR_CV_Header/Delete/5
         public async Task<ActionResult> Delete(long? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            CR_AD_Header cR_AD_Header = await db.CR_AD_Header.FindAsync(id);
-            if (cR_AD_Header == null)
+            USR_CV_Header uSR_CV_Header = await db.USR_CV_Header.FindAsync(id);
+            if (uSR_CV_Header == null)
             {
                 return HttpNotFound();
             }
-            return View(cR_AD_Header);
+            return View(uSR_CV_Header);
         }
 
-        // POST: CR_Header/Delete/5
+        // POST: USR_CV_Header/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(long id)
         {
-            CR_AD_Header cR_AD_Header = await db.CR_AD_Header.FindAsync(id);
-            db.CR_AD_Header.Remove(cR_AD_Header);
+            USR_CV_Header uSR_CV_Header = await db.USR_CV_Header.FindAsync(id);
+            db.USR_CV_Header.Remove(uSR_CV_Header);
             await db.SaveChangesAsync();
             return RedirectToAction("Index");
         }

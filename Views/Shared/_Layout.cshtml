@@ -13,6 +13,7 @@
     @Scripts.Render("~/bundles/modernizr")
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <body>
 
@@ -34,11 +35,16 @@
                     }
 
                     @if ((Session["User"] != null && (Boolean)Session["User"]))
-                    {
-                        <li>@Html.ActionLink("Perfil", "Profile", "User", null, new { @class = "nav-link scrollto" })</li>
-                    }
-
-                    @if ((Session["UserCR"] != null && (Boolean)Session["UserCR"]) || (Session["User"] != null && (Boolean)Session["User"]))
+                    {                        
+                        <li class="dropdown">
+                            <a href="@Url.Action("Profile", "User")"><span>Perfil</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li>@Html.ActionLink("Perfil", "Profile", "User", null, new { @class = "nav-link scrollto" })</li>
+                                <li>@Html.ActionLink("Completar CV", "CV", "User", null, new { @class = "nav-link scrollto" })</li>                                
+                                <li>@Html.ActionLink("Logout", "Logout", "User", null, new { @class = "nav-link scrollto" })</li>
+                            </ul>
+                        </li>
+                    }else if((Session["UserCR"] != null && (Boolean)Session["UserCR"]))
                     {
                         <li>@Html.ActionLink("Logout", "Logout", "User", null, new { @class = "nav-link scrollto" })</li>
                     }
